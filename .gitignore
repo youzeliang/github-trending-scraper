@@ -109,7 +109,7 @@ venv.bak/
 .idea/
 
 # Output files
-*.csv
+
 *.json
 
 # Mac OS

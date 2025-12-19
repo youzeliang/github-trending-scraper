@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """
@@ -10,10 +10,11 @@ GitHub趋势项目爬虫
 """
 
 import argparse
+import csv
 import json
-from typing import Any, Dict, List, Optional
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Set, Union
 
-import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
@@ -22,6 +23,7 @@ class GitHubTrending:
     """GitHub趋势项目爬虫类"""
 
     BASE_URL = "https://github.com/trending"
+    BLOCKLIST_FILE = "block_github.csv"
     HEADERS = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                       "(KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
@@ -30,6 +32,7 @@ class GitHubTrending:
 
     def __init__(self) -> None:
         """初始化GitHub趋势爬虫"""
+        self.base_dir = Path(__file__).resolve().parent
         self.session = requests.Session()
         self.session.headers.update(self.HEADERS)
 
@@ -54,18 +57,59 @@ class GitHubTrending:
         # 添加时间范围参数
         period_mapping = {"daily": "daily", "weekly": "weekly", "monthly": "monthly"}
         if period in period_mapping:
-            url = f"{url}?since={period_mapping[period]}"
+            separator = "?" if "?" not in url else "&"
+            url = f"{url}{separator}since={period_mapping[period]}"
+
+        # 从 block 列表和历史 CSV 中加载已存在的链接，避免重复
+        blocklist = self._load_blocklist()
+
+        history_urls: Set[str] = set()
+        try:
+            history_file = self._resolve_path("github_trending.csv")
+            if history_file.exists():
+                # 复用 _load_blocklist 读取简单的单列 CSV（无表头）
+                history_urls = self._load_blocklist(str(history_file))
+        except Exception:
+            # 历史文件读取失败时，不影响本次抓取
+            history_urls = set()
+
+        existed_urls: Set[str] = blocklist | history_urls
 
         try:
             # 发送请求
-            response = self.session.get(url)
+            response = self.session.get(url, timeout=30)
             response.raise_for_status()  # 检查请求是否成功
             
             # 解析HTML
-            return self._parse_html(response.text)
+            repositories = self._parse_html(response.text)
+            if not repositories:
+                print(f"警告: 未能从页面解析到任何项目，URL: {url}")
+                return []
+
+            # 过滤掉已存在于 block_github.csv 和 github_trending.csv 中的链接
+            filtered_repositories: List[Dict[str, Any]] = []
+            seen_in_batch: Set[str] = set()
+            for repo in repositories:
+                url_value = repo.get('url')
+                if not url_value:
+                    continue
+                if url_value in existed_urls:
+                    continue
+                if url_value in seen_in_batch:
+                    continue
+                seen_in_batch.add(url_value)
+                filtered_repositories.append(repo)
+
+            return filtered_repositories
         
+        except requests.Timeout:
+            print(f"请求超时: {url}")
+            return []
         except requests.RequestException as e:
             print(f"请求出错: {e}")
+            return []
+        except Exception as e:
+            print(f"处理过程中出错: {e}")
             return []
 
     def _parse_html(self, html_content: str) -> List[Dict[str, Any]]:
@@ -79,57 +123,109 @@ class GitHubTrending:
             包含项目信息的字典列表
         """
         soup = BeautifulSoup(html_content, 'html.parser')
-        repositories = []
+        repositories: List[Dict[str, str]] = []
 
-        # 查找所有项目块
+        # 查找所有项目块 - 尝试多种可能的选择器
         article_blocks = soup.select('article.Box-row')
         
+        # 如果没找到，尝试其他可能的选择器
+        if not article_blocks:
+            article_blocks = soup.select('article')
+        
         for article in article_blocks:
-            repo_info = {}
+            # 尝试多种可能的选择器来找到仓库链接
+            repo_name_element = (
+                article.select_one('h2.h3.lh-condensed a') or
+                article.select_one('h2 a') or
+                article.select_one('h3 a') or
+                article.select_one('a[href*="/"]')
+            )
             
-            # 提取项目名称和开发者
-            repo_name_element = article.select_one('h2.h3.lh-condensed a')
             if repo_name_element:
-                full_name = repo_name_element.text.strip().replace(" ", "").replace("\\n", "")
-                if "/" in full_name:
-                    developer, name = full_name.split('/', 1)
-                    repo_info['developer'] = developer.strip()
-                    repo_info['name'] = name.strip()
-                else:
-                    repo_info['name'] = full_name
-                    repo_info['developer'] = ""
-            
-            # 提取项目URL
-            if repo_name_element and repo_name_element.get('href'):
-                repo_info['url'] = f"https://github.com{repo_name_element.get('href')}"
-            
-            # 提取项目描述
-            description_element = article.select_one('p')
-            repo_info['description'] = description_element.text.strip() if description_element else ""
-            
-            # 提取编程语言
-            language_element = article.select_one('span[itemprop="programmingLanguage"]')
-            repo_info['language'] = language_element.text.strip() if language_element else "未知"
-            
-            # 提取星标数
-            stars_element = article.select('a.Link--muted')[0] if article.select('a.Link--muted') else None
-            repo_info['stars'] = stars_element.text.strip().replace(",", "") if stars_element else "0"
-            
-            # 提取今日新增星标
-            stars_today_element = article.select_one('span.d-inline-block.float-sm-right')
-            stars_today = "0"
-            if stars_today_element:
-                stars_text = stars_today_element.text.strip()
-                stars_today = ''.join(filter(str.isdigit, stars_text)) or "0"
-            repo_info['stars_today'] = stars_today
-            
-            # 提取分叉数
-            forks_element = article.select('a.Link--muted')[1] if len(article.select('a.Link--muted')) > 1 else None
-            repo_info['forks'] = forks_element.text.strip().replace(",", "") if forks_element else "0"
-            
-            repositories.append(repo_info)
+                href = repo_name_element.get('href')
+                if href:
+                    # 确保URL是完整的
+                    if href.startswith('http'):
+                        repo_url = href
+                    elif href.startswith('/'):
+                        repo_url = f"https://github.com{href}"
+                    else:
+                        repo_url = f"https://github.com/{href}"
+                    repositories.append({'url': repo_url})
         
         return repositories
+
+    def _resolve_path(self, filename: Union[str, Path]) -> Path:
+        """将相对路径解析到脚本所在目录"""
+        path = Path(filename)
+        if path.is_absolute():
+            return path
+        return self.base_dir / path
+
+    def _load_blocklist(self, block_filename: Optional[str] = None) -> Set[str]:
+        """
+        加载 block 列表
+
+        参数:
+            block_filename: block列表文件名
+
+        返回:
+            包含所有 block 项目的集合
+        """
+        block_filename = self._resolve_path(block_filename or self.BLOCKLIST_FILE)
+        blocklist: Set[str] = set()
+        if not block_filename.exists():
+            return blocklist
+
+        try:
+            with block_filename.open(newline='', encoding='utf-8') as block_file:
+                reader = csv.reader(block_file)
+                for row in reader:
+                    if not row:
+                        continue
+                    value = row[0].strip()
+                    if not value:
+                        continue
+                    if value.lower() == 'url' and not blocklist:
+                        continue
+                    blocklist.add(value)
+        except OSError as e:
+            print(f"读取 block 文件失败: {e}")
+
+        return blocklist
+
+    def add_to_blocklist(self, value: str, block_filename: Optional[str] = None) -> None:
+        """
+        将条目写入 block 列表文件
+
+        参数:
+            value: 要写入的字符串
+            block_filename: block列表文件名
+        """
+        block_filename = self._resolve_path(block_filename or self.BLOCKLIST_FILE)
+        value = value.strip()
+        if not value:
+            print("无法写入空字符串到 block 列表")
+            return
+
+        blocklist = self._load_blocklist(block_filename)
+        if value in blocklist:
+            print(f"{value} 已存在于 block 列表中")
+            return
+
+        needs_header = True
+        if block_filename.exists():
+            needs_header = block_filename.stat().st_size == 0
+
+        try:
+            with block_filename.open('a', newline='', encoding='utf-8') as block_file:
+                writer = csv.writer(block_file)
+                if needs_header:
+                    writer.writerow(['url'])
+                writer.writerow([value])
+            print(f"已添加到 block 列表: {value}")
+        except OSError as e:
+            print(f"写入 block 文件失败: {e}")
 
     def save_to_csv(self, data: List[Dict[str, Any]], filename: str) -> None:
         """
@@ -144,9 +240,38 @@ class GitHubTrending:
             return
         
         try:
-            df = pd.DataFrame(data)
-            df.to_csv(filename, index=False, encoding='utf-8-sig')
-            print(f"数据已保存到 {filename}")
+            output_path = self._resolve_path(filename)
+            if not data:
+                return
+
+            # 去重（同一批次内不重复）
+            unique_data: List[Dict[str, Any]] = []
+            batch_seen: Set[str] = set()
+            for item in data:
+                url_val = item.get("url")
+                if not url_val:
+                    continue
+                if url_val in batch_seen:
+                    continue
+                batch_seen.add(url_val)
+                unique_data.append({"url": url_val})
+
+            if not unique_data:
+                print("没有新的数据可写入")
+                return
+
+            file_exists = output_path.exists()
+            file_empty = (not file_exists) or output_path.stat().st_size == 0
+
+            # 新建文件时写入 BOM，追加时不再写 BOM
+            mode = 'w' if file_empty else 'a'
+            encoding = 'utf-8-sig' if file_empty else 'utf-8'
+
+            with output_path.open(mode, newline='', encoding=encoding) as csvfile:
+                for item in unique_data:
+                    csvfile.write(f"{item['url']}\n")
+
+            print(f"数据已保存到 {output_path}")
         except Exception as e:
             print(f"保存CSV文件时出错: {e}")
 
@@ -163,9 +288,10 @@ class GitHubTrending:
             return
         
         try:
-            with open(filename, 'w', encoding='utf-8') as f:
+            output_path = self._resolve_path(filename)
+            with output_path.open('w', encoding='utf-8') as f:
                 json.dump(data, f, ensure_ascii=False, indent=4)
-            print(f"数据已保存到 {filename}")
+            print(f"数据已保存到 {output_path}")
         except Exception as e:
             print(f"保存JSON文件时出错: {e}")
 

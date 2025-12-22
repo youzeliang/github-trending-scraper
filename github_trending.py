@@ -299,9 +299,13 @@ class GitHubTrending:
 def main() -> None:
     """主函数，处理命令行参数并执行爬虫"""
     parser = argparse.ArgumentParser(description='GitHub趋势项目爬虫')
-    parser.add_argument('--period', type=str, default='daily',
-                        choices=['daily', 'weekly', 'monthly'],
-                        help='时间范围：daily(今日)、weekly(本周)、monthly(本月)')
+    parser.add_argument(
+        '--period',
+        type=str,
+        default='all',
+        choices=['daily', 'weekly', 'monthly', 'all'],
+        help='时间范围：daily(今日)、weekly(本周)、monthly(本月)、all(依次抓取三种周期)'
+    )
     parser.add_argument('--language', type=str, default=None,
                         help='编程语言，例如python、javascript等')
     parser.add_argument('--output', type=str, default='github_trending.csv',
@@ -316,22 +320,36 @@ def main() -> None:
     scraper = GitHubTrending()
     
     # 获取趋势项目
-    print(f"正在获取GitHub {args.period} 趋势项目" + (f"（{args.language}）" if args.language else "..."))
-    trending_repos = scraper.get_trending(period=args.period, language=args.language)
+    all_repos: List[Dict[str, Any]] = []
+    periods_to_fetch = (
+        ['daily', 'weekly', 'monthly'] if args.period == 'all' else [args.period]
+    )
+
+    for period in periods_to_fetch:
+        print(
+            f"正在获取GitHub {period} 趋势项目"
+            + (f"（{args.language}）" if args.language else "...")
+        )
+        repos = scraper.get_trending(period=period, language=args.language)
+        if not repos:
+            print(f"{period} 周期未获取到任何数据")
+            continue
+        print(f"{period} 周期获取到 {len(repos)} 个项目")
+        all_repos.extend(repos)
     
-    if not trending_repos:
+    if not all_repos:
         print("未获取到任何数据")
         return
     
-    print(f"获取到 {len(trending_repos)} 个项目")
+    print(f"合并后共获取到 {len(all_repos)} 个项目（可能包含不同周期重复项，将在保存时再次去重）")
     
     # 保存数据
     if args.format == 'csv':
         output_file = args.output if args.output.endswith('.csv') else f"{args.output}.csv"
-        scraper.save_to_csv(trending_repos, output_file)
+        scraper.save_to_csv(all_repos, output_file)
     else:
         output_file = args.output if args.output.endswith('.json') else f"{args.output}.json"
-        scraper.save_to_json(trending_repos, output_file)
+        scraper.save_to_json(all_repos, output_file)
 
 
 if __name__ == '__main__':

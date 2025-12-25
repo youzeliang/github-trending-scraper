@@ -15,7 +15,7 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/juzikuwei/github-trending-scraper.git
+git clone https://github.com/youzeliang/github-trending-scraper.git
 
 # 进入目录
 cd github-trending-scraper

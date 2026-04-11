@@ -1,227 +1,232 @@
 #,Project Name,GitHub URL,Language,Description,Main Features
-1,agrinman/tunnelto,https://github.com/agrinman/tunnelto,TBD,TBD,TBD
-2,jaywcjlove/awesome-mac,https://github.com/jaywcjlove/awesome-mac,TBD,TBD,TBD
-3,cocoindex-io/cocoindex,https://github.com/cocoindex-io/cocoindex,TBD,TBD,TBD
-4,sgl-project/mini-sglang,https://github.com/sgl-project/mini-sglang,TBD,TBD,TBD
-5,tursodatabase/turso,https://github.com/tursodatabase/turso,TBD,TBD,TBD
-6,datawhalechina/hello-agents,https://github.com/datawhalechina/hello-agents,TBD,TBD,TBD
-7,trustedsec/social-engineer-toolkit,https://github.com/trustedsec/social-engineer-toolkit,TBD,TBD,TBD
-8,trimstray/the-book-of-secret-knowledge,https://github.com/trimstray/the-book-of-secret-knowledge,TBD,TBD,TBD
-9,ZJU-LLMs/Foundations-of-LLMs,https://github.com/ZJU-LLMs/Foundations-of-LLMs,TBD,TBD,TBD
-10,anthropics/skills,https://github.com/anthropics/skills,TBD,TBD,TBD
-11,safety-research/bloom,https://github.com/safety-research/bloom,TBD,TBD,TBD
-12,xerrors/Yuxi-Know,https://github.com/xerrors/Yuxi-Know,TBD,TBD,TBD
-13,apurvsinghgautam/robin,https://github.com/apurvsinghgautam/robin,TBD,TBD,TBD
-14,ostris/ai-toolkit,https://github.com/ostris/ai-toolkit,TBD,TBD,TBD
-15,Shubhamsaboo/awesome-llm-apps,https://github.com/Shubhamsaboo/awesome-llm-apps,TBD,TBD,TBD
-16,NanmiCoder/MediaCrawler,https://github.com/NanmiCoder/MediaCrawler,TBD,TBD,TBD
-17,google-gemini/computer-use-preview,https://github.com/google-gemini/computer-use-preview,TBD,TBD,TBD
-18,nocodb/nocodb,https://github.com/nocodb/nocodb,TBD,TBD,TBD
-19,GitHubDaily/GitHubDaily,https://github.com/GitHubDaily/GitHubDaily,TBD,TBD,TBD
-20,livekit/agents,https://github.com/livekit/agents,TBD,TBD,TBD
-21,shareAI-lab/learn-claude-code,https://github.com/shareAI-lab/learn-claude-code,TBD,TBD,TBD
-22,Lissy93/web-check,https://github.com/Lissy93/web-check,TBD,TBD,TBD
-23,anthropics/claude-code-action,https://github.com/anthropics/claude-code-action,TBD,TBD,TBD
-24,marcelscruz/public-apis,https://github.com/marcelscruz/public-apis,TBD,TBD,TBD
-25,kirodotdev/Kiro,https://github.com/kirodotdev/Kiro,TBD,TBD,TBD
-26,VectifyAI/PageIndex,https://github.com/VectifyAI/PageIndex,TBD,TBD,TBD
-27,ChromeDevTools/chrome-devtools-mcp,https://github.com/ChromeDevTools/chrome-devtools-mcp,TBD,TBD,TBD
-28,patchy631/ai-engineering-hub,https://github.com/patchy631/ai-engineering-hub,TBD,TBD,TBD
-29,MiroMindAI/MiroThinker,https://github.com/MiroMindAI/MiroThinker,TBD,TBD,TBD
-30,xpipe-io/xpipe,https://github.com/xpipe-io/xpipe,TBD,TBD,TBD
-31,NevaMind-AI/memU,https://github.com/NevaMind-AI/memU,TBD,TBD,TBD
-32,HKUDS/VideoRAG,https://github.com/HKUDS/VideoRAG,TBD,TBD,TBD
-33,numman-ali/opencode-openai-codex-auth,https://github.com/numman-ali/opencode-openai-codex-auth,TBD,TBD,TBD
-34,NVlabs/alpasim,https://github.com/NVlabs/alpasim,TBD,TBD,TBD
-35,tailwindlabs/tailwindcss,https://github.com/tailwindlabs/tailwindcss,TBD,TBD,TBD
-36,netbirdio/netbird,https://github.com/netbirdio/netbird,TBD,TBD,TBD
-37,C4illin/ConvertX,https://github.com/C4illin/ConvertX,TBD,TBD,TBD
-38,bytedance/UI-TARS-desktop,https://github.com/bytedance/UI-TARS-desktop,TBD,TBD,TBD
-39,Johnshall/Shadowrocket-ADBlock-Rules-Forever,https://github.com/Johnshall/Shadowrocket-ADBlock-Rules-Forever,TBD,TBD,TBD
-40,frankbria/ralph-claude-code,https://github.com/frankbria/ralph-claude-code,TBD,TBD,TBD
-41,obra/superpowers,https://github.com/obra/superpowers,TBD,TBD,TBD
-42,opf/openproject,https://github.com/opf/openproject,TBD,TBD,TBD
-43,hacksider/Deep-Live-Cam,https://github.com/hacksider/Deep-Live-Cam,TBD,TBD,TBD
-44,twentyhq/twenty,https://github.com/twentyhq/twenty,TBD,TBD,TBD
-45,twitter/twemoji,https://github.com/twitter/twemoji,TBD,TBD,TBD
-46,home-assistant/home-assistant.io,https://github.com/home-assistant/home-assistant.io,TBD,TBD,TBD
-47,gyoridavid/ai_agents_az,https://github.com/gyoridavid/ai_agents_az,TBD,TBD,TBD
-48,steveyegge/beads,https://github.com/steveyegge/beads,TBD,TBD,TBD
-49,DioxusLabs/dioxus,https://github.com/DioxusLabs/dioxus,TBD,TBD,TBD
-50,ruvnet/claude-flow,https://github.com/ruvnet/claude-flow,TBD,TBD,TBD
-51,mpv-player/mpv,https://github.com/mpv-player/mpv,TBD,TBD,TBD
-52,OpenBMB/ChatDev,https://github.com/OpenBMB/ChatDev,TBD,TBD,TBD
-53,icloud-photos-downloader/icloud_photos_downloader,https://github.com/icloud-photos-downloader/icloud_photos_downloader,TBD,TBD,TBD
-54,blakeblackshear/frigate,https://github.com/blakeblackshear/frigate,TBD,TBD,TBD
-55,chidiwilliams/buzz,https://github.com/chidiwilliams/buzz,TBD,TBD,TBD
-56,adam-maj/tiny-gpu,https://github.com/adam-maj/tiny-gpu,TBD,TBD,TBD
-57,Free-TV/IPTV,https://github.com/Free-TV/IPTV,TBD,TBD,TBD
-58,onlook-dev/onlook,https://github.com/onlook-dev/onlook,TBD,TBD,TBD
-59,badlogic/pi-mono,https://github.com/badlogic/pi-mono,TBD,TBD,TBD
-60,KeygraphHQ/shannon,https://github.com/KeygraphHQ/shannon,TBD,TBD,TBD
-61,dev-sec/ansible-collection-hardening,https://github.com/dev-sec/ansible-collection-hardening,TBD,TBD,TBD
-62,grab/cursor-talk-to-figma-mcp,https://github.com/grab/cursor-talk-to-figma-mcp,TBD,TBD,TBD
-63,zoicware/RemoveWindowsAI,https://github.com/zoicware/RemoveWindowsAI,TBD,TBD,TBD
-64,rancher/rancher,https://github.com/rancher/rancher,TBD,TBD,TBD
-65,eigent-ai/eigent,https://github.com/eigent-ai/eigent,TBD,TBD,TBD
-66,cilium/cilium,https://github.com/cilium/cilium,TBD,TBD,TBD
-67,wavetermdev/waveterm,https://github.com/wavetermdev/waveterm,TBD,TBD,TBD
-68,ultralytics/ultralytics,https://github.com/ultralytics/ultralytics,TBD,TBD,TBD
-69,google-ai-edge/mediapipe,https://github.com/google-ai-edge/mediapipe,TBD,TBD,TBD
-70,facebookresearch/sam-audio,https://github.com/facebookresearch/sam-audio,TBD,TBD,TBD
-71,ComposioHQ/awesome-claude-skills,https://github.com/ComposioHQ/awesome-claude-skills,TBD,TBD,TBD
-72,nautechsystems/nautilus_trader,https://github.com/nautechsystems/nautilus_trader,TBD,TBD,TBD
-73,DataTalksClub/data-engineering-zoomcamp,https://github.com/DataTalksClub/data-engineering-zoomcamp,TBD,TBD,TBD
-74,alirezarezvani/claude-skills,https://github.com/alirezarezvani/claude-skills,TBD,TBD,TBD
-75,lukasz-madon/awesome-remote-job,https://github.com/lukasz-madon/awesome-remote-job,TBD,TBD,TBD
-76,EveryInc/compound-engineering-plugin,https://github.com/EveryInc/compound-engineering-plugin,TBD,TBD,TBD
-77,liyupi/ai-guide,https://github.com/liyupi/ai-guide,TBD,TBD,TBD
-78,block/goose,https://github.com/block/goose,TBD,TBD,TBD
-79,Asabeneh/30-Days-Of-Python,https://github.com/Asabeneh/30-Days-Of-Python,TBD,TBD,TBD
-80,OpenBMB/UltraRAG,https://github.com/OpenBMB/UltraRAG,TBD,TBD,TBD
-81,lyogavin/airllm,https://github.com/lyogavin/airllm,TBD,TBD,TBD
-82,supermemoryai/supermemory,https://github.com/supermemoryai/supermemory,TBD,TBD,TBD
-83,asgeirtj/system_prompts_leaks,https://github.com/asgeirtj/system_prompts_leaks,TBD,TBD,TBD
-84,kubernetes/ingress-nginx,https://github.com/kubernetes/ingress-nginx,TBD,TBD,TBD
-85,moltbot/moltbot,https://github.com/moltbot/moltbot,TBD,TBD,TBD
-86,lbjlaq/Antigravity-Manager,https://github.com/lbjlaq/Antigravity-Manager,TBD,TBD,TBD
-87,anomalyco/opencode-anthropic-auth,https://github.com/anomalyco/opencode-anthropic-auth,TBD,TBD,TBD
-88,openclaw/openclaw,https://github.com/openclaw/openclaw,TBD,TBD,TBD
-89,Draculabo/AntigravityManager,https://github.com/Draculabo/AntigravityManager,TBD,TBD,TBD
-90,PaddlePaddle/PaddleOCR,https://github.com/PaddlePaddle/PaddleOCR,TBD,TBD,TBD
-91,AlexanderGrooff/mermaid-ascii,https://github.com/AlexanderGrooff/mermaid-ascii,TBD,TBD,TBD
-92,reconurge/flowsint,https://github.com/reconurge/flowsint,TBD,TBD,TBD
-93,pedramamini/Maestro,https://github.com/pedramamini/Maestro,TBD,TBD,TBD
-94,amantus-ai/vibetunnel,https://github.com/amantus-ai/vibetunnel,TBD,TBD,TBD
-95,j178/prek,https://github.com/j178/prek,TBD,TBD,TBD
-96,steipete/Peekaboo,https://github.com/steipete/Peekaboo,TBD,TBD,TBD
-97,autobrr/qui,https://github.com/autobrr/qui,TBD,TBD,TBD
-98,langchain-ai/rag-from-scratch,https://github.com/langchain-ai/rag-from-scratch,TBD,TBD,TBD
-99,openai/skills,https://github.com/openai/skills,TBD,TBD,TBD
-100,disler/claude-code-hooks-mastery,https://github.com/disler/claude-code-hooks-mastery,TBD,TBD,TBD
-101,ankitects/anki,https://github.com/ankitects/anki,TBD,TBD,TBD
-102,fish-shell/fish-shell,https://github.com/fish-shell/fish-shell,TBD,TBD,TBD
-103,linshenkx/prompt-optimizer,https://github.com/linshenkx/prompt-optimizer,TBD,TBD,TBD
-104,ZeroTworu/anet,https://github.com/ZeroTworu/anet,TBD,TBD,TBD
-105,DataExpert-io/data-engineer-handbook,https://github.com/DataExpert-io/data-engineer-handbook,TBD,TBD,TBD
-106,pydantic/monty,https://github.com/pydantic/monty,TBD,TBD,TBD
-107,home-assistant/addons,https://github.com/home-assistant/addons,TBD,TBD,TBD
-108,gitbutlerapp/gitbutler,https://github.com/gitbutlerapp/gitbutler,TBD,TBD,TBD
-109,hsliuping/TradingAgents-CN,https://github.com/hsliuping/TradingAgents-CN,TBD,TBD,TBD
-110,public-apis/public-apis,https://github.com/public-apis/public-apis,TBD,TBD,TBD
-111,github/gh-aw,https://github.com/github/gh-aw,TBD,TBD,TBD
-112,carlvellotti/claude-code-pm-course,https://github.com/carlvellotti/claude-code-pm-course,TBD,TBD,TBD
-113,cheahjs/free-llm-api-resources,https://github.com/cheahjs/free-llm-api-resources,TBD,TBD,TBD
-114,Jeffallan/claude-skills,https://github.com/Jeffallan/claude-skills,TBD,TBD,TBD
-115,cinnyapp/cinny,https://github.com/cinnyapp/cinny,TBD,TBD,TBD
-116,HandsOnLLM/Hands-On-Large-Language-Models,https://github.com/HandsOnLLM/Hands-On-Large-Language-Models,TBD,TBD,TBD
-117,vercel-labs/agent-skills,https://github.com/vercel-labs/agent-skills,TBD,TBD,TBD
-118,google-deepmind/superhuman,https://github.com/google-deepmind/superhuman,TBD,TBD,TBD
-119,Zipstack/unstract,https://github.com/Zipstack/unstract,TBD,TBD,TBD
-120,moonshine-ai/moonshine,https://github.com/moonshine-ai/moonshine,TBD,TBD,TBD
-121,ashishps1/awesome-system-design-resources,https://github.com/ashishps1/awesome-system-design-resources,TBD,TBD,TBD
-122,OpenCTI-Platform/opencti,https://github.com/OpenCTI-Platform/opencti,TBD,TBD,TBD
-123,NirDiamant/RAG_Techniques,https://github.com/NirDiamant/RAG_Techniques,TBD,TBD,TBD
-124,huggingface/skills,https://github.com/huggingface/skills,TBD,TBD,TBD
-125,databricks-solutions/ai-dev-kit,https://github.com/databricks-solutions/ai-dev-kit,TBD,TBD,TBD
-126,yctimlin/mcp_excalidraw,https://github.com/yctimlin/mcp_excalidraw,TBD,TBD,TBD
-127,muratcankoylan/Agent-Skills-for-Context-Engineering,https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering,TBD,TBD,TBD
-128,f/prompts.chat,https://github.com/f/prompts.chat,TBD,TBD,TBD
-129,mihail911/modern-software-dev-assignments,https://github.com/mihail911/modern-software-dev-assignments,TBD,TBD,TBD
-130,ruvnet/ruvector,https://github.com/ruvnet/ruvector,TBD,TBD,TBD
-131,GVCLab/PersonaLive,https://github.com/GVCLab/PersonaLive,TBD,TBD,TBD
-132,farion1231/cc-switch,https://github.com/farion1231/cc-switch,TBD,TBD,TBD
-133,ruvnet/ruflo,https://github.com/ruvnet/ruflo,TBD,TBD,TBD
-134,NousResearch/hermes-agent,https://github.com/NousResearch/hermes-agent,TBD,TBD,TBD
-135,NVlabs/GR00T-WholeBodyControl,https://github.com/NVlabs/GR00T-WholeBodyControl,TBD,TBD,TBD
-136,microsoft/markitdown,https://github.com/microsoft/markitdown,TBD,TBD,TBD
-137,K-Dense-AI/claude-scientific-skills,https://github.com/K-Dense-AI/claude-scientific-skills,TBD,TBD,TBD
-138,servo/servoCodebuffAI,https://github.com/servo/servohttps://github.com/CodebuffAI/codebuff,TBD,TBD,TBD
-139,agentscope-ai/agentscope,https://github.com/agentscope-ai/agentscope,TBD,TBD,TBD
-140,agentscope-ai/ReMe,https://github.com/agentscope-ai/ReMe,TBD,TBD,TBD
-141,LMCache/LMCache,https://github.com/LMCache/LMCache,TBD,TBD,TBD
-142,xpzouying/xiaohongshu-mcp,https://github.com/xpzouying/xiaohongshu-mcp,TBD,TBD,TBD
-143,CodebuffAI/codebuff,https://github.com/CodebuffAI/codebuff,TBD,TBD,TBD
-144,openclaw/clawhub,https://github.com/openclaw/clawhub,TBD,TBD,TBD
-145,msitarzewski/agency-agents,https://github.com/msitarzewski/agency-agents,TBD,TBD,TBD
-146,FujiwaraChoki/MoneyPrinterV2,https://github.com/FujiwaraChoki/MoneyPrinterV2,TBD,TBD,TBD
-147,ItzCrazyKns/Perplexica,https://github.com/ItzCrazyKns/Perplexica,TBD,TBD,TBD
-148,FlowiseAI/Flowise,https://github.com/FlowiseAI/Flowise,TBD,TBD,TBD
-149,TheCraigHewitt/seomachine,https://github.com/TheCraigHewitt/seomachine,TBD,TBD,TBD
-150,inclusionAI/AReaL,https://github.com/inclusionAI/AReaL,TBD,TBD,TBD
-151,microsoft/mcp-for-beginners,https://github.com/microsoft/mcp-for-beginners,TBD,TBD,TBD
-152,microsoft/hve-core,https://github.com/microsoft/hve-core,TBD,TBD,TBD
-153,QwenLM/Qwen-Agent,https://github.com/QwenLM/Qwen-Agent,TBD,TBD,TBD
-154,Ed1s0nZ/CyberStrikeAI,https://github.com/Ed1s0nZ/CyberStrikeAI,TBD,TBD,TBD
-155,lingfengQAQ/webnovel-writer,https://github.com/lingfengQAQ/webnovel-writer,TBD,TBD,TBD
-156,agentjido/jido,https://github.com/agentjido/jido,TBD,TBD,TBD
-157,toeverything/AFFiNE,https://github.com/toeverything/AFFiNE,TBD,TBD,TBD
-158,shadcn-ui/ui,https://github.com/shadcn-ui/ui,TBD,TBD,TBD
-159,alibaba/page-agent,https://github.com/alibaba/page-agent,TBD,TBD,TBD
-160,is-a-dev/register,https://github.com/is-a-dev/register,TBD,TBD,TBD
-161,teng-lin/notebooklm-py,https://github.com/teng-lin/notebooklm-py,TBD,TBD,TBD
-162,pbakaus/impeccable,https://github.com/pbakaus/impeccable,TBD,TBD,TBD
-163,koala73/worldmonitor,https://github.com/koala73/worldmonitor,TBD,TBD,TBD
-164,666ghj/BettaFish,https://github.com/666ghj/BettaFish,TBD,TBD,TBD
-165,Raphire/Win11Debloat,https://github.com/Raphire/Win11Debloat,TBD,TBD,TBD
-166,promptfoo/promptfoo,https://github.com/promptfoo/promptfoo,TBD,TBD,TBD
-167,sepinf-inc/IPED,https://github.com/sepinf-inc/IPED,TBD,TBD,TBD
-168,ItzCrazyKns/Vane,https://github.com/ItzCrazyKns/Vane,TBD,TBD,TBD
-169,fishaudio/fish-speech,https://github.com/fishaudio/fish-speech,TBD,TBD,TBD
-170,AstrBotDevs/AstrBot,https://github.com/AstrBotDevs/AstrBot,TBD,TBD,TBD
-171,shanraisshan/claude-code-best-practice,https://github.com/shanraisshan/claude-code-best-practice,TBD,TBD,TBD
-172,langflow-ai/openrag,https://github.com/langflow-ai/openrag,TBD,TBD,TBD
-173,InsForge/InsForge,https://github.com/InsForge/InsForge,TBD,TBD,TBD
-174,vectorize-io/hindsight,https://github.com/vectorize-io/hindsight,TBD,TBD,TBD
-175,google-ai-edge/LiteRT,https://github.com/google-ai-edge/LiteRT,TBD,TBD,TBD
-176,dolthub/dolt,https://github.com/dolthub/dolt,TBD,TBD,TBD
-177,Q00/ouroboros,https://github.com/Q00/ouroboros,TBD,TBD,TBD
-178,dimensionalOS/dimos,https://github.com/dimensionalOS/dimos,TBD,TBD,TBD
-179,SynkraAI/aiox-core,https://github.com/SynkraAI/aiox-core,TBD,TBD,TBD
-180,Crosstalk-Solutions/project-nomad,https://github.com/Crosstalk-Solutions/project-nomad,TBD,TBD,TBD
-181,sickn33/antigravity-awesome-skills,https://github.com/sickn33/antigravity-awesome-skills,TBD,TBD,TBD
-182,langchain-ai/deepagents,https://github.com/langchain-ai/deepagents,TBD,TBD,TBD
-183,YishenTu/claudian,https://github.com/YishenTu/claudian,TBD,TBD,TBD
-184,fluxerapp/fluxer,https://github.com/fluxerapp/fluxer,TBD,TBD,TBD
-185,jarrodwatts/claude-hud,https://github.com/jarrodwatts/claude-hud,TBD,TBD,TBD
-186,cloudflare/workerd,https://github.com/cloudflare/workerd,TBD,TBD,TBD
-187,newton-physics/newton,https://github.com/newton-physics/newton,TBD,TBD,TBD
-188,shadps4-emu/shadPS4,https://github.com/shadps4-emu/shadPS4,TBD,TBD,TBD
-189,langchain-ai/open-swe,https://github.com/langchain-ai/open-swe,TBD,TBD,TBD
-190,affaan-m/everything-claude-code,https://github.com/affaan-m/everything-claude-code,TBD,TBD,TBD
-191,andrewyng/context-hub,https://github.com/andrewyng/context-hub,TBD,TBD,TBD
-192,opendataloader-project/opendataloader-pdf,https://github.com/opendataloader-project/opendataloader-pdf,TBD,TBD,TBD
-193,mobile-dev-inc/Maestro,https://github.com/mobile-dev-inc/Maestro,TBD,TBD,TBD
-194,louis-e/arnis,https://github.com/louis-e/arnis,TBD,TBD,TBD
-195,vas3k/TaxHacker,https://github.com/vas3k/TaxHacker,TBD,TBD,TBD
-196,TauricResearch/TradingAgents,https://github.com/TauricResearch/TradingAgents,TBD,TBD,TBD
-197,openrocket/openrocket,https://github.com/openrocket/openrocket,TBD,TBD,TBD
-198,systemd/systemd,https://github.com/systemd/systemd,TBD,TBD,TBD
-199,jamwithai/production-agentic-rag-course,https://github.com/jamwithai/production-agentic-rag-course,TBD,TBD,TBD
-200,HKUDS/LightRAG,https://github.com/HKUDS/LightRAG,TBD,TBD,TBD
-201,harry0703/MoneyPrinterTurbo,https://github.com/harry0703/MoneyPrinterTurbo,TBD,TBD,TBD
-202,tinygrad/tinygrad,https://github.com/tinygrad/tinygrad,TBD,TBD,TBD
-203,jingyaogong/minimind,https://github.com/jingyaogong/minimind,TBD,TBD,TBD
-204,kepano/obsidian-skills,https://github.com/kepano/obsidian-skills,TBD,TBD,TBD
-205,hesreallyhim/awesome-claude-code,https://github.com/hesreallyhim/awesome-claude-code,TBD,TBD,TBD
-206,pascalorg/editor,https://github.com/pascalorg/editor,TBD,TBD,TBD
-207,mvanhorn/last30days-skill,https://github.com/mvanhorn/last30days-skill,TBD,TBD,TBD
-208,BerriAI/litellm,https://github.com/BerriAI/litellm,TBD,TBD,TBD
-209,usestrix/strix,https://github.com/usestrix/strix,TBD,TBD,TBD
-210,letta-ai/claude-subconscious,https://github.com/letta-ai/claude-subconscious,TBD,TBD,TBD
-211,Yeachan-Heo/oh-my-claudecode,https://github.com/Yeachan-Heo/oh-my-claudecode,TBD,TBD,TBD
-212,Vaibhavs10/insanely-fast-whisper,https://github.com/Vaibhavs10/insanely-fast-whisper,TBD,TBD,TBD
-213,datalab-to/chandra,https://github.com/datalab-to/chandra,TBD,TBD,TBD
-214,figma/mcp-server-guide,https://github.com/figma/mcp-server-guide,TBD,TBD,TBD
-215,SakanaAI/AI-Scientist-v2,https://github.com/SakanaAI/AI-Scientist-v2,TBD,TBD,TBD
-216,FreeCAD/FreeCAD,https://github.com/FreeCAD/FreeCAD,TBD,TBD,TBD
-217,onyx-dot-app/onyx,https://github.com/onyx-dot-app/onyx,TBD,TBD,TBD
-218,manaflow-ai/cmux,https://github.com/manaflow-ai/cmux,TBD,TBD,TBD
-219,luongnv89/claude-howto,https://github.com/luongnv89/claude-howto,TBD,TBD,TBD
-220,fastfetch-cli/fastfetch,https://github.com/fastfetch-cli/fastfetch,TBD,TBD,TBD
-221,freeCodeCamp/freeCodeCamp,https://github.com/freeCodeCamp/freeCodeCamp,TBD,TBD,TBD
-222,sherlock-project/sherlock,https://github.com/sherlock-project/sherlock,TBD,TBD,TBD
-223,Dimillian/Skills,https://github.com/Dimillian/Skills,TBD,TBD,TBD
-224,neovim/neovim,https://github.com/neovim/neovim,TBD,TBD,TBD
-225,jwasham/coding-interview-university,https://github.com/jwasham/coding-interview-university,TBD,TBD,TBD
-226,axios/axios,https://github.com/axios/axios,TBD,TBD,TBD
+servo/servo,https://github.com/servo/servo,Rust,浏览器引擎,Mozilla Servo浏览器引擎,高性能Rust实现的Web渲染引擎
+1,agrinman/tunnelto,https://github.com/agrinman/tunnelto,Rust,一个将本地服务器暴露到互联网的工具，支持内网穿透,无需公网IP即可让外部访问本地服务
+2,jaywcjlove/awesome-mac,https://github.com/jaywcjlove/awesome-mac,JavaScript,精选的Mac应用和工具列表,收录优质macOS软件、效率工具、开发环境配置
+3,cocoindex-io/cocoindex,https://github.com/cocoindex-io/cocoindex,Go,代码索引和语义搜索工具,支持代码库语义搜索和代码理解
+4,sgl-project/mini-sglang,https://github.com/sgl-project/mini-sglang,Python,轻量级SGLang运行时,高效的大语言模型推理框架，支持流式输出
+5,tursodatabase/turso,https://github.com/tursodatabase/turso,Go,边缘数据库，基于libSQL（SQLite分支）,全球分布式SQLite数据库，支持边缘计算场景
+6,datawhalechina/hello-agents,https://github.com/datawhalechina/hello-agents,Python,AI Agent入门教程,Datawhale出品的AI Agent学习资源
+7,trustedsec/social-engineer-toolkit,https://github.com/trustedsec/social-engineer-toolkit,Python,社会工程学工具集,安全研究和渗透测试工具
+8,trimstray/the-book-of-secret-knowledge,https://github.com/trimstray/the-book-of-secret-knowledge,Shell,黑客和安全工具知识库,系统管理员和安全工程师的参考手册
+9,ZJU-LLMs/Foundations-of-LLMs,https://github.com/ZJU-LLMs/Foundations-of-LLMs,Python,浙江大学LLM基础教程,大语言模型理论和实践课程
+10,anthropics/skills,https://github.com/anthropics/skills,Python,Anthropic Claude技能库,官方Claude扩展和技能集
+11,safety-research/bloom,https://github.com/safety-research/bloom,Python,安全研究工具,Bloom安全研究相关项目
+12,xerrors/Yuxi-Know,https://github.com/xerrors/Yuxi-Know,Python,个人知识管理系统,笔记和知识整理工具
+13,apurvsinghgautam/robin,https://github.com/apurvsinghgautam/robin,Python,AI助手项目,个人AI助手实现
+14,ostris/ai-toolkit,https://github.com/ostris/ai-toolkit,Python,AI艺术创作工具包,图像生成和编辑的AI工具集合
+15,Shubhamsaboo/awesome-llm-apps,https://github.com/Shubhamsaboo/awesome-llm-apps,Python,LLM应用精选列表,收集优秀的LLM应用案例
+16,NanmiCoder/MediaCrawler,https://github.com/NanmiCoder/MediaCrawler,Python,社交媒体数据爬虫,支持小红书、微博等平台数据采集
+17,google-gemini/computer-use-preview,https://github.com/google-gemini/computer-use-preview,Python,Google Gemini计算机控制预览,AI代理控制计算机的实验性功能
+18,nocodb/nocodb,https://github.com/nocodb/nocodb,TypeScript,开源Airtable替代品,可视化数据库管理界面，支持SQLite/MySQL/PostgreSQL
+19,GitHubDaily/GitHubDaily,https://github.com/GitHubDaily/GitHubDaily,Python,GitHub日报,每日分享GitHub优质项目
+20,livekit/agents,https://github.com/livekit/agents,Python,LiveKit AI代理框架,实时音视频AI代理开发框架
+21,shareAI-lab/learn-claude-code,https://github.com/shareAI-lab/learn-claude-code,Python,Claude Code学习指南,Claude Code使用教程和最佳实践
+22,Lissy93/web-check,https://github.com/Lissy93/web-check,JavaScript,网站健康检查工具,分析网站性能、安全性、SEO等指标
+23,anthropics/claude-code-action,https://github.com/anthropics/claude-code-action,TypeScript,Claude Code GitHub Action,在CI/CD中集成Claude Code
+24,marcelscruz/public-apis,https://github.com/marcelscruz/public-apis,Python,免费公共API列表,汇总可免费使用的API接口
+25,kirodotdev/Kiro,https://github.com/kirodotdev/Kiro,TypeScript,开发者工具,Kiro开发者工具集
+26,VectifyAI/PageIndex,https://github.com/VectifyAI/PageIndex,Python,页面索引工具,网页内容索引和搜索
+27,ChromeDevTools/chrome-devtools-mcp,https://github.com/ChromeDevTools/chrome-devtools-mcp,TypeScript,Chrome DevTools MCP服务器,Chrome开发者工具的MCP协议实现
+28,patchy631/ai-engineering-hub,https://github.com/patchy631/ai-engineering-hub,Python,AI工程中心,AI工程实践资源
+29,MiroMindAI/MiroThinker,https://github.com/MiroMindAI/MiroThinker,Python,AI思考框架,多模态AI思考和推理
+30,xpipe-io/xpipe,https://github.com/xpipe-io/xpipe,Go,命令行管道工具,Linux/Unix管道命令的现代化替代
+31,NevaMind-AI/memU,https://github.com/NevaMind-AI/memU,Python,记忆管理AI,AI驱动的个人记忆系统
+32,HKUDS/VideoRAG,https://github.com/HKUDS/VideoRAG,Python,视频检索增强生成,视频内容的RAG检索系统
+33,numman-ali/opencode-openai-codex-auth,https://github.com/numman-ali/opencode-openai-codex-auth,Python,OpenAI Codex认证,OpenCode认证相关工具
+34,NVlabs/alpasim,https://github.com/NVlabs/alpasim,Python,NVIDIA模拟器,NVIDIA相关模拟工具
+35,tailwindlabs/tailwindcss,https://github.com/tailwindlabs/tailwindcss,JavaScript,实用优先的CSS框架,原子化CSS框架，快速构建现代界面
+36,netbirdio/netbird,https://github.com/netbirdio/netbird,Go,开源VPN替代方案,基于WireGuard的点对点安全网络
+37,C4illin/ConvertX,https://github.com/C4illin/ConvertX,JavaScript,多功能转换工具,支持文件、音频、视频等多种格式转换
+38,bytedance/UI-TARS-desktop,https://github.com/bytedance/UI-TARS-desktop,Python,字节跳动UI代理桌面应用,AI驱动的UI自动化工具
+39,Johnshall/Shadowrocket-ADBlock-Rules-Forever,https://github.com/Johnshall/Shadowrocket-ADBlock-Rules-Forever,JavaScript,Shadowrocket广告拦截规则,持续更新的iOS代理规则
+40,frankbria/ralph-claude-code,https://github.com/frankbria/ralph-claude-code,Python,Ralph AI助手,Ralph品牌的Claude集成
+41,obra/superpowers,https://github.com/obra/superpowers,Rust,游戏开发工具,独立游戏开发辅助工具
+42,opf/openproject,https://github.com/opf/openproject,Ruby,开源项目管理软件,功能完整的项目管理和团队协作平台
+43,hacksider/Deep-Live-Cam,https://github.com/hacksider/Deep-Live-Cam,Python,实时AI换脸工具,使用深度学习实现实时人脸替换
+44,twentyhq/twenty,https://github.com/twentyhq/twenty,TypeScript,开源CRM系统,现代开源客户关系管理平台
+45,twitter/twemoji,https://github.com/twitter/twemoji,JavaScript,Twitter开源表情符号,Twitter开源的表情图标库
+46,home-assistant/home-assistant.io,https://github.com/home-assistant/home-assistant.io,Python,智能家居平台文档,Home Assistant配置和使用文档
+47,gyoridavid/ai_agents_az,https://github.com/gyoridavid/ai_agents_az,Python,Azure AI代理,微软Azure上的AI代理实现
+48,steveyegge/beads,https://github.com/steveyegge/beads,JavaScript,编程语言实现,用JavaScript实现的教育性编程语言
+49,DioxusLabs/dioxus,https://github.com/DioxusLabs/dioxus,Rust,声明式UI框架,高性能跨平台UI框架，支持Web/桌面/移动端
+50,ruvnet/claude-flow,https://github.com/ruvnet/claude-flow,Python,Claude工作流自动化,Claude AI工作流编排工具
+51,mpv-player/mpv,https://github.com/mpv-player/mpv,C,多功能跨平台播放器,支持几乎所有音视频格式的开源播放器
+52,OpenBMB/ChatDev,https://github.com/OpenBMB/ChatDev,Python,多代理软件开发框架,使用LLM驱动的虚拟软件公司
+53,icloud-photos-downloader,https://github.com/icloud-photos-downloader/icloud_photos_downloader,Python,iCloud照片下载器,备份iCloud照片到本地
+54,blakeblackshear/frigate,https://github.com/blakeblackshear/frigate,Python,开源AI家庭监控,NVR解决方案，支持本地AI检测
+55,chidiwilliams/buzz,https://github.com/chidiwilliams/buzz,TypeScript,离线语音转文字工具,支持 Whisper 的桌面应用
+56,adam-maj/tiny-gpu,https://github.com/adam-maj/tiny-gpu,Verilog,GPU架构学习项目,用Verilog实现的教学级GPU
+57,Free-TV/IPTV,https://github.com/Free-TV/IPTV,Python,IPTV频道列表,收集免费IPTV直播源
+58,onlook-dev/onlook,https://github.com/onlook-dev/onlook,Rust,设计到代码工具,设计稿自动转换为代码
+59,badlogic/pi-mono,https://github.com/badlogic/pi-mono,C,游戏引擎,轻量级跨平台游戏引擎
+60,KeygraphHQ/shannon,https://github.com/KeygraphHQ/shannon,Python,图神经网络工具,知识图谱和图神经网络库
+61,dev-sec/ansible-collection-hardening,https://github.com/dev-sec/ansible-collection-hardening,Python,Ansible安全加固集合,服务器安全配置自动化
+62,grab/cursor-talk-to-figma-mcp,https://github.com/grab/cursor-talk-to-figma-mcp,TypeScript,Figma MCP服务器,Figma设计工具的MCP集成
+63,zoicware/RemoveWindowsAI,https://github.com/zoicware/RemoveWindowsAI,Python,Windows AI工具,Windows系统AI增强工具
+64,rancher/rancher,https://github.com/rancher/rancher,Go,容器管理平台,Kubernetes集群管理界面
+65,eigent-ai/eigent,https://github.com/eigent-ai/eigent,Python,AI安全研究,AI安全和对齐研究
+66,cilium/cilium,https://github.com/cilium/cilium,Go,云原生网络,基于eBPF的Kubernetes网络和安全
+67,wavetermdev/waveterm,https://github.com/wavetermdev/waveterm,TypeScript,现代化终端,支持图形和命令的下一代终端
+68,ultralytics/ultralytics,https://github.com/ultralytics/ultralytics,Python,YOLO目标检测框架,计算机视觉模型训练和推理
+69,google-ai-edge/mediapipe,https://github.com/google-ai-edge/mediapipe,JavaScript/C++,Google AI感知框架,人脸检测、手势识别等AI模型
+70,facebookresearch/sam-audio,https://github.com/facebookresearch/sam-audio,Python,Meta音频分割模型,音频源分离模型
+71,ComposioHQ/awesome-claude-skills,https://github.com/ComposioHQ/awesome-claude-skills,Python,Claude技能精选,Composio出品的Claude扩展集合
+72,nautechsystems/nautilus_trader,https://github.com/nautechsystems/nautilus_trader,Python,加密货币交易框架,高性能量化交易系统
+73,DataTalksClub/data-engineering-zoomcamp,https://github.com/DataTalksClub/data-engineering-zoomcamp,Python,数据工程课程,免费数据工程学习课程
+74,alirezarezvani/claude-skills,https://github.com/alirezarezvani/claude-skills,Python,Claude技能集合,社区贡献的Claude技能
+75,lukasz-madon/awesome-remote-job,https://github.com/lukasz-madon/awesome-remote-job,Python,远程工作资源列表,远程Job和远程工作资源
+76,EveryInc/compound-engineering-plugin,https://github.com/EveryInc/compound-engineering-plugin,TypeScript,工程插件,复合工程工具集
+77,liyupi/ai-guide,https://github.com/liyupi/ai-guide,Python,AI开发者指南,程序员AI转型指南
+78,block/goose,https://github.com/block/goose,Python,AI代理开发框架,Block开源的AI代理工具
+79,Asabeneh/30-Days-Of-Python,https://github.com/Asabeneh/30-Days-Of-Python,Python,30天Python学习,系统化Python学习课程
+80,OpenBMB/UltraRAG,https://github.com/OpenBMB/UltraRAG,Python,高级RAG框架,检索增强生成的优化实现
+81,lyogavin/airllm,https://github.com/lyogavin/airllm,Python,LLM推理优化,大模型推理加速库
+82,supermemoryai/supermemory,https://github.com/supermemoryai/supermemory,TypeScript,AI记忆库,AI驱动的个人知识管理
+83,asgeirtj/system_prompts_leaks,https://github.com/asgeirtj/system_prompts_leaks,Python,系统提示词泄露研究,收集和分析系统提示词
+84,kubernetes/ingress-nginx,https://github.com/kubernetes/ingress-nginx,Go,Kubernetes Ingress控制器,官方NGINX ingress实现
+85,moltbot/moltbot,https://github.com/moltbot/moltbot,Python,Moltin Bot,电商聊天机器人
+86,lbjlaq/Antigravity-Manager,https://github.com/lbjlaq/Antigravity-Manager,Python,反重力管理器,Antigravity相关工具
+87,anomalyco/opencode-anthropic-auth,https://github.com/anomalyco/opencode-anthropic-auth,Python,OpenCode认证,OpenCode认证集成
+88,openclaw/openclaw,https://github.com/openclaw/openclaw,TypeScript,AI助手框架,开源AI助手和代理框架
+89,Draculabo/AntigravityManager,https://github.com/Draculabo/AntigravityManager,Python,Antigravity管理,Antigravity项目管理器
+90,PaddlePaddle/PaddleOCR,https://github.com/PaddlePaddle/PaddleOCR,Python,百度OCR工具,支持多种语言的OCR识别
+91,AlexanderGrooff/mermaid-ascii,https://github.com/AlexanderGrooff/mermaid-ascii,TypeScript,Mermaid图表工具,Mermaid图表ASCII渲染
+92,reconurge/flowsint,https://github.com/reconurge/flowsint,Python,流集成工具,工作流集成平台
+93,pedramamini/Maestro,https://github.com/pedramamini/Maestro,TypeScript,AI音乐生成,AI音乐创作工具
+94,amantus-ai/vibetunnel,https://github.com/amantus-ai/vibetunnel,Python,Vibe隧道工具,内网穿透工具
+95,j178/prek,https://github.com/j178/prek,Go,Go密码库,Go语言加密工具库
+96,steipete/Peekaboo,https://github.com/steipete/Peekaboo,Swift,macOS调试工具,macOS应用调试和分析
+97,autobrr/qui,https://github.com/autobrr/qui,Go,下载管理界面,现代化下载管理UI
+98,langchain-ai/rag-from-scratch,https://github.com/langchain-ai/rag-from-scratch,Python,RAG教程,从零实现RAG系统
+99,openai/skills,https://github.com/openai/skills,Python,OpenAI技能集,OpenAI官方技能扩展
+100,disler/claude-code-hooks-mastery,https://github.com/disler/claude-code-hooks-mastery,Python,Claude代码钩子,Claude代码使用技巧
+101,ankitects/anki,https://github.com/ankitects/anki,Rust,间隔重复记忆软件,开源记忆卡片应用
+102,fish-shell/fish-shell,https://github.com/fish-shell/fish-shell,C++,现代化终端Shell,用户友好的命令行解释器
+103,linshenkx/prompt-optimizer,https://github.com/linshenkx/prompt-optimizer,Python,提示词优化工具,优化LLM提示词
+104,ZeroTworu/anet,https://github.com/ZeroTworu/anet,Python,AI网络工具,神经网络相关工具
+105,DataExpert-io/data-engineer-handbook,https://github.com/DataExpert-io/data-engineer-handbook,Python,数据工程师手册,数据工程实践指南
+106,pydantic/monty,https://github.com/pydantic/monty,Python,Pydantic扩展,Python数据验证增强库
+107,home-assistant/addons,https://github.com/home-assistant/addons,Python,Home Assistant插件,家庭自动化插件集合
+108,gitbutlerapp/gitbutler,https://github.com/gitbutlerapp/gitbutler,Rust,Git分支管理工具,虚拟分支管理，增强Git功能
+109,hsliuping/TradingAgents-CN,https://github.com/hsliuping/TradingAgents-CN,Python,交易代理中文版,TradingAgents中文适配
+110,public-apis/public-apis,https://github.com/public-apis/public-apis,Python,免费API列表,免费公共API资源汇总
+111,github/gh-aw,https://github.com/github/gh-aw,TypeScript,GitHub工作流助手,GitHub Actions辅助工具
+112,carlvellotti/claude-code-pm-course,https://github.com/carlvellotti/claude-code-pm-course,Python,项目经理AI课程,AI辅助项目管理培训
+113,cheahjs/free-llm-api-resources,https://github.com/cheahjs/free-llm-api-resources,Python,免费LLM API资源,免费大模型API列表
+114,Jeffallan/claude-skills,https://github.com/Jeffallan/claude-skills,Python,Claude技能集合,社区Claude技能
+115,cinnyapp/cinny,https://github.com/cinnyapp/cinny,TypeScript,Matrix客户端,开源Matrix聊天客户端
+116,HandsOnLLM/Hands-On-Large-Language-Models,https://github.com/HandsOnLLM/Hands-On-Large-Language-Models,Python,LLM实践指南,动手学大模型
+117,vercel-labs/agent-skills,https://github.com/vercel-labs/agent-skills,TypeScript,Vercel Agent技能,Vercel平台的AI代理技能
+118,google-deepmind/superhuman,https://github.com/google-deepmind/superhuman,Python,DeepMind研究工具,DeepMind研究成果工具
+119,Zipstack/unstract,https://github.com/Zipstack/unstract,Python,无代码ETL平台,非结构化数据提取和转换
+120,moonshine-ai/moonshine,https://github.com/moonshine-ai/moonshine,Python,语音模型,轻量级语音识别模型
+121,ashishps1/awesome-system-design-resources,https://github.com/ashishps1/awesome-system-design-resources,Python,系统设计资源,架构设计学习资料
+122,OpenCTI-Platform/opencti,https://github.com/OpenCTI-Platform/opencti,JavaScript,威胁情报平台,开源威胁情报管理
+123,NirDiamant/RAG_Techniques,https://github.com/NirDiamant/RAG_Techniques,Python,RAG技术合集,检索增强生成技术实践
+124,huggingface/skills,https://github.com/huggingface/skills,Python,HuggingFace技能,HuggingFace生态工具
+125,databricks-solutions/ai-dev-kit,https://github.com/databricks-solutions/ai-dev-kit,Python,Databricks AI开发套件,Databricks AI开发工具
+126,yctimlin/mcp_excalidraw,https://github.com/yctimlin/mcp_excalidraw,TypeScript,Excalidraw MCP服务器,白板工具的MCP集成
+127,muratcankoylan/Agent-Skills-for-Context-Engineering,https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering,Python,上下文工程技能,上下文工程最佳实践
+128,f/prompts.chat,https://github.com/f/prompts.chat,TypeScript,提示词分享平台,分享和发现LLM提示词
+129,mihail911/modern-software-dev-assignments,https://github.com/mihail911/modern-software-dev-assignments,Python,现代软件开发,现代开发实践作业
+130,ruvnet/ruvector,https://github.com/ruvnet/ruvector,Python,向量数据库工具,RAG向量检索工具
+131,GVCLab/PersonaLive,https://github.com/GVCLab/PersonaLive,JavaScript,虚拟形象直播,AI虚拟主播工具
+132,farion1231/cc-switch,https://github.com/farion1231/cc-switch,Python,国家代码切换,国际化和本地化工具
+133,ruvnet/ruflo,https://github.com/ruvnet/ruflo,Python,AI工作流工具,AI工作流编排
+134,NousResearch/hermes-agent,https://github.com/NousResearch/hermes-agent,Python,Hermes代理框架,NousResearch的AI代理
+135,NVlabs/GR00T-WholeBodyControl,https://github.com/NVlabs/GR00T-WholeBodyControl,Rust,机器人全身控制,NVIDIA机器人控制项目
+136,microsoft/markitdown,https://github.com/microsoft/markitdown,TypeScript,文档转换工具,Markdown转多种格式
+137,K-Dense-AI/claude-scientific-skills,https://github.com/K-Dense-AI/claude-scientific-skills,Python,科学AI技能,科研AI工具集
+139,agentscope-ai/agentscope,https://github.com/agentscope-ai/agentscope,Python,多代理框架,多智能体协作开发框架
+140,agentscope-ai/ReMe,https://github.com/agentscope-ai/ReMe,Python,记忆管理,多代理记忆共享
+141,LMCache/LMCache,https://github.com/LMCache/LMCache,Python,LLM缓存工具,大模型推理缓存库
+142,xpzouying/xiaohongshu-mcp,https://github.com/xpzouying/xiaohongshu-mcp,Python,小红书MCP服务器,小红书API集成
+143,CodebuffAI/codebuff,https://github.com/CodebuffAI/codebuff,Python,代码优化工具,AI代码分析和优化
+144,openclaw/clawhub,https://github.com/openclaw/clawhub,TypeScript,OpenClaw技能市场,OpenClaw插件和技能平台
+145,msitarzewski/agency-agents,https://github.com/msitarzewski/agency-agents,Python,代理框架,AI代理开发框架
+146,FujiwaraChoki/MoneyPrinterV2,https://github.com/FujiwaraChoki/MoneyPrinterV2,Python,AI视频生成,AI自动制作视频内容
+147,ItzCrazyKns/Perplexica,https://github.com/ItzCrazyKns/Perplexica,TypeScript,AI搜索引擎,开源AI驱动的搜索引擎
+148,FlowiseAI/Flowise,https://github.com/FlowiseAI/Flowise,TypeScript,可视化LLM流程构建,拖拽式AI流程编排
+149,TheCraigHewitt/seomachine,https://github.com/TheCraigHewitt/seomachine,Python,SEO工具,AI辅助SEO分析
+150,inclusionAI/AReaL,https://github.com/inclusionAI/AReaL,Python,AI现实增强,AI增强现实应用
+151,microsoft/mcp-for-beginners,https://github.com/microsoft/mcp-for-beginners,TypeScript,MCP入门教程,Model Context Protocol学习
+152,microsoft/hve-core,https://github.com/microsoft/hve-core,TypeScript,微软HVE核心,微软HVE项目核心
+153,QwenLM/Qwen-Agent,https://github.com/QwenLM/Qwen-Agent,Python,通义千问代理,阿里Qwen Agent开发框架
+154,Ed1s0nZ/CyberStrikeAI,https://github.com/Ed1s0nZ/CyberStrikeAI,Python,网络安全AI,AI驱动的网络安全工具
+155,lingfengQAQ/webnovel-writer,https://github.com/lingfengQAQ/webnovel-writer,Python,网文写作助手,AI辅助网络小说创作
+156,agentjido/jido,https://github.com/agentjido/jido,TypeScript,AI代理工具,Jido AI代理平台
+157,toeverything/AFFiNE,https://github.com/toeverything/AFFiNE,TypeScript,协作文档平台,Notion替代品，支持Markdown
+158,shadcn-ui/ui,https://github.com/shadcn-ui/ui,TypeScript,React组件库,基于Radix UI的精美组件集合
+159,alibaba/page-agent,https://github.com/alibaba/page-agent,Python,阿里页面代理,阿里相关代理工具
+160,is-a-dev/register,https://github.com/is-a-dev/register,JavaScript,免费域名注册,免费.is-a.dev子域名
+161,teng-lin/notebooklm-py,https://github.com/teng-lin/notebooklm-py,Python,NotebookLM Python客户端,Google NotebookLM API封装
+162,pbakaus/impeccable,https://github.com/pbakaus/impeccable,TypeScript,代码质量工具,代码审查和格式化
+163,koala73/worldmonitor,https://github.com/koala73/worldmonitor,Python,世界监控,全球数据监控工具
+164,666ghj/BettaFish,https://github.com/666ghj/BettaFish,Python,BettaFish项目,游戏相关项目
+165,Raphire/Win11Debloat,https://github.com/Raphire/Win11Debloat,PowerShell,Windows 11精简工具,移除Windows 11不必要组件
+166,promptfoo/promptfoo,https://github.com/promptfoo/promptfoo,TypeScript,LLM评估工具,测试和评估提示词效果
+167,sepinf-inc/IPED,https://github.com/sepinf-inc/IPED,Java,数字取证工具,法证数字调查工具
+168,ItzCrazyKns/Vane,https://github.com/ItzCrazyKns/Vane,TypeScript,浏览器扩展,浏览器增强工具
+169,fishaudio/fish-speech,https://github.com/fishaudio/fish-speech,Python,开源语音合成,TTS模型，支持中文
+170,AstrBotDevs/AstrBot,https://github.com/AstrBotDevs/AstrBot,Python,QQ机器人框架,AstrBot QQ机器人开发框架
+171,shanraisshan/claude-code-best-practice,https://github.com/shanraisshan/claude-code-best-practice,Python,Claude最佳实践,Claude代码使用技巧集
+172,langflow-ai/openrag,https://github.com/langflow-ai/openrag,Python,开源RAG平台,可视化RAG系统构建
+173,InsForge/InsForge,https://github.com/InsForge/InsForge,Python,Instagram工具,Instagram数据分析和管理
+174,vectorize-io/hindsight,https://github.com/vectorize-io/hindsight,Python,向量数据库工具,Hindsight向量引擎
+175,google-ai-edge/LiteRT,https://github.com/google-ai-edge/LiteRT,JavaScript,Google边缘AI运行时,移动端AI推理框架
+176,dolthub/dolt,https://github.com/dolthub/dolt,Go,Git风格数据库,像Git一样版本控制的SQL数据库
+177,Q00/ouroboros,https://github.com/Q00/ouroboros,Python,无限循环工具,循环和迭代工具
+178,dimensionalOS/dimos,https://github.com/dimensionalOS/dimos,Go,操作系统,实验性操作系统
+179,SynkraAI/aiox-core,https://github.com/SynkraAI/aiox-core,Python,AI核心库,Synkra AI核心组件
+180,Crosstalk-Solutions/project-nomad,https://github.com/Crosstalk-Solutions/project-nomad,Python,项目管理工具,Project Nomad解决方案
+181,sickn33/antigravity-awesome-skills,https://github.com/sickn33/antigravity-awesome-skills,Python,Antigravity技能集,Antigravity相关技能
+182,langchain-ai/deepagents,https://github.com/langchain-ai/deepagents,Python,深度代理框架,LangChain深度代理
+183,YishenTu/claudian,https://github.com/YishenTu/claudian,Python,Claude集成,Claude与各种工具的集成
+184,fluxerapp/fluxer,https://github.com/fluxerapp/fluxer,TypeScript,流媒体工具,Fluxer流媒体应用
+185,jarrodwatts/claude-hud,https://github.com/jarrodwatts/claude-hud,TypeScript,Claude HUD,AI助手界面
+186,cloudflare/workerd,https://github.com/cloudflare/workerd,JavaScript,Cf Workers运行时,Cloudflare Workers V8引擎
+187,newton-physics/newton,https://github.com/newton-physics/newton,Python,物理引擎,牛顿物理学模拟
+188,shadps4-emu/shadPS4,https://github.com/shadps4-emu/shadPS4,Python,C++ PS4模拟器,PlayStation 4模拟器
+189,langchain-ai/open-swe,https://github.com/langchain-ai/open-swe,Python,开源软件工程,LLM软件工程工具
+190,affaan-m/everything-claude-code,https://github.com/affaan-m/everything-claude-code,Python,Claude代码大全,Claude代码资源汇总
+191,andrewyng/context-hub,https://github.com/andrewyng/context-hub,Python,上下文管理,AI上下文管理工具
+192,opendataloader-project/opendataloader-pdf,https://github.com/opendataloader-project/opendataloader-pdf,Python,PDF数据提取,PDF文档数据提取工具
+193,mobile-dev-inc/Maestro,https://github.com/mobile-dev-inc/Maestro,TypeScript,移动测试框架,移动应用UI测试工具
+194,louis-e/arnis,https://github.com/louis-e/arnis,Rust,开源堡垒机,开源堡垒机系统
+195,vas3k/TaxHacker,https://github.com/vas3k/TaxHacker,Python,税务指南,个人税务优化指南
+196,TauricResearch/TradingAgents,https://github.com/TauricResearch/TradingAgents,Python,交易代理框架,AI量化交易框架
+197,openrocket/openrocket,https://github.com/openrocket/openrocket,Java,火箭模拟器,开源火箭设计和仿真
+198,systemd/systemd,https://github.com/systemd/systemd,C,Linux系统管理器,Linux系统和服务管理器
+199,jamwithai/production-agentic-rag-course,https://github.com/jamwithai/production-agentic-rag-course,Python,生产级RAG课程,AI RAG实战课程
+200,HKUDS/LightRAG,https://github.com/HKUDS/LightRAG,Python,轻量级RAG,高效的检索增强生成框架
+201,harry0703/MoneyPrinterTurbo,https://github.com/harry0703/MoneyPrinterTurbo,Python,AI视频生成器,AI自动制作短视频
+202,tinygrad/tinygrad,https://github.com/tinygrad/tinygrad,Python,深度学习框架,极简深度学习框架
+203,jingyaogong/minimind,https://github.com/jingyaogong/minimind,Python,迷你大模型,从零实现的小型LLM
+204,kepano/obsidian-skills,https://github.com/kepano/obsidian-skills,Python,Obsidian技能,Obsidian笔记技巧
+205,hesreallyhim/awesome-claude-code,https://github.com/hesreallyhim/awesome-claude-code,Python,Claude代码精选,Claude代码资源
+206,pascalorg/editor,https://github.com/pascalorg/editor,TypeScript,在线编辑器,Pascal编辑器
+207,mvanhorn/last30days-skill,https://github.com/mvanhorn/last30days-skill,Python,30天技能,学习30天技能项目
+208,BerriAI/litellm,https://github.com/BerriAI/litellm,Python,统一LLM接口,调用100+大模型的统一API
+209,usestrix/strix,https://github.com/usestrix/strix,TypeScript,AI界面组件,AI UI组件库
+210,letta-ai/claude-subconscious,https://github.com/letta-ai/claude-subconscious,Python,Claude潜意识,Claude记忆和潜意识
+211,Yeachan-Heo/oh-my-claudecode,https://github.com/Yeachan-Heo/oh-my-claudecode,Python,Claude代码助手,Oh My Claude Code扩展
+212,Vaibhavs10/insanely-fast-whisper,https://github.com/Vaibhavs10/insanely-fast-whisper,Python,极速Whisper,优化版Whisper推理
+213,datalab-to/chandra,https://github.com/datalab-to/chandra,Python,数据实验室,数据分析和可视化
+217,onyx-dot-app/onyx,https://github.com/onyx-dot-app/onyx,TypeScript,AI笔记应用,开源AI笔记和知识库
+218,manaflow-ai/cmux,https://github.com/manaflow-ai/cmux,Python,多路复用,AI任务多路复用工具
+219,luongnv89/claude-howto,https://github.com/luongnv89/claude-howto,Python,Claude使用指南,Claude AI使用教程
+220,fastfetch-cli/fastfetch,https://github.com/fastfetch-cli/fastfetch,C,系统信息工具,比Neofetch更快的系统信息
+221,freeCodeCamp/freeCodeCamp,https://github.com/freeCodeCamp/freeCodeCamp,JavaScript,编程学习平台,免费编程学习和认证
+222,sherlock-project/sherlock,https://github.com/sherlock-project/sherlock,Python,用户名搜索工具,在社交网络搜索用户名
+223,Dimillian/Skills,https://github.com/Dimillian/Skills,Swift,Apple开发技能,Apple平台开发技能
+224,neovim/neovim,https://github.com/neovim/neovim,Vim Script,现代化Vim,可扩展的文本编辑器
+225,jwasham/coding-interview-university,https://github.com/jwasham/coding-interview-university,Python,编程面试指南,成为软件工程师的学习路径
+226,axios/axios,https://github.com/axios/axios,JavaScript,HTTP客户端,Promise-based HTTP客户端
+227,aaif-goose/goose,https://github.com/aaif-goose/goose,Python,AI代理框架,AAI开源AI代理工具
+228,coleam00/Archon,https://github.com/coleam00/Archon,TypeScript,终端AI界面,终端AI聊天界面
+229,forrestchang/andrej-karpathy-skills,https://github.com/forrestchang/andrej-karpathy-skills,Python,Karpathy技能,Andrej Karpathy分享的技能
+230,goharbor/harbor,https://github.com/goharbor/harbor,Go,云原生镜像仓库,企业级容器镜像仓库
+231,jqlang/jq,https://github.com/jqlang/jq,C,命令行JSON工具,处理JSON的命令行工具
+232,mattpocock/skills,https://github.com/mattpocock/skills,TypeScript,技能集合,M端Pocock的技能集
+233,multica-ai/multica,https://github.com/multica-ai/multica,Python,多模态AI框架,多模态模型集成
+234,shiyu-coder/Kronos,https://github.com/shiyu-coder/Kronos,Python,时间序列工具,时间序列分析和预测

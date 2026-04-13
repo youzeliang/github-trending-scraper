@@ -1459,13 +1459,6 @@
 - **主要特性**: 调用100+大模型的统一API
 
 ---
-## 209. usestrix/strix
-- **GitHub**: https://github.com/usestrix/strix
-- **语言**: TypeScript
-- **描述**: AI界面组件
-- **主要特性**: AI UI组件库
-
----
 ## 210. letta-ai/claude-subconscious
 - **GitHub**: https://github.com/letta-ai/claude-subconscious
 - **语言**: Python
@@ -1494,25 +1487,11 @@
 - **主要特性**: 数据分析和可视化
 
 ---
-## 214. figma/mcp-server-guide
-- **GitHub**: https://github.com/figma/mcp-server-guide
-- **语言**: TypeScript
-- **描述**: Figma MCP指南
-- **主要特性**: Figma MCP集成文档
-
----
 ## 215. SakanaAI/AI-Scientist-v2
 - **GitHub**: https://github.com/SakanaAI/AI-Scientist-v2
 - **语言**: Python
 - **描述**: AI科学家
 - **主要特性**: 自动化AI研究工具
-
----
-## 216. FreeCAD/FreeCAD
-- **GitHub**: https://github.com/FreeCAD/FreeCAD
-- **语言**: C++
-- **描述**: 开源CAD软件
-- **主要特性**: 参数化3D建模工具
 
 ---
 ## 217. onyx-dot-app/onyx
@@ -1557,13 +1536,6 @@
 - **主要特性**: 在社交网络搜索用户名
 
 ---
-## 223. Dimillian/Skills
-- **GitHub**: https://github.com/Dimillian/Skills
-- **语言**: Swift
-- **描述**: Apple开发技能
-- **主要特性**: Apple平台开发技能
-
----
 ## 224. neovim/neovim
 - **GitHub**: https://github.com/neovim/neovim
 - **语言**: Vim Script
@@ -1604,13 +1576,6 @@
 - **语言**: Python
 - **描述**: Karpathy技能
 - **主要特性**: Andrej Karpathy分享的技能
-
----
-## 230. goharbor/harbor
-- **GitHub**: https://github.com/goharbor/harbor
-- **语言**: Go
-- **描述**: 云原生镜像仓库
-- **主要特性**: 企业级容器镜像仓库
 
 ---
 ## 231. jqlang/jq

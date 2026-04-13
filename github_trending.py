@@ -244,7 +244,11 @@ class GitHubTrending:
             if not data:
                 return
 
-            # 去重（同一批次内不重复）
+            interesting_urls: Set[str] = set()
+            interesting_file = self._resolve_path("interesting.csv")
+            if interesting_file.exists():
+                interesting_urls = self._load_blocklist(str(interesting_file))
+
             unique_data: List[Dict[str, Any]] = []
             batch_seen: Set[str] = set()
             for item in data:
@@ -252,6 +256,8 @@ class GitHubTrending:
                 if not url_val:
                     continue
                 if url_val in batch_seen:
+                    continue
+                if url_val in interesting_urls:
                     continue
                 batch_seen.add(url_val)
                 unique_data.append({"url": url_val})
@@ -263,7 +269,6 @@ class GitHubTrending:
             file_exists = output_path.exists()
             file_empty = (not file_exists) or output_path.stat().st_size == 0
 
-            # 新建文件时写入 BOM，追加时不再写 BOM
             mode = 'w' if file_empty else 'a'
             encoding = 'utf-8-sig' if file_empty else 'utf-8'
 

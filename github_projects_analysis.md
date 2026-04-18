@@ -1,6 +1,6 @@
 # GitHub Trending 项目分析
-> 生成时间: 2026-04-17 21:21:46
-> 项目总数: 152
+> 生成时间: 2026-04-18 11:09:59
+> 项目总数: 156
 
 ---
 ## 1. BasedHardware/omi
@@ -1062,6 +1062,34 @@
 ---
 ## 152. z-lab/dflash
 - **GitHub**: https://github.com/z-lab/dflash
+- **语言**: 未知
+- **描述**: 待补充
+- **主要特性**: 待补充
+
+---
+## 153. Asabeneh/30-Days-Of-Python
+- **GitHub**: https://github.com/Asabeneh/30-Days-Of-Python
+- **语言**: 未知
+- **描述**: 待补充
+- **主要特性**: 待补充
+
+---
+## 154. Tracer-Cloud/opensre
+- **GitHub**: https://github.com/Tracer-Cloud/opensre
+- **语言**: 未知
+- **描述**: 待补充
+- **主要特性**: 待补充
+
+---
+## 155. lukilabs/craft-agents-oss
+- **GitHub**: https://github.com/lukilabs/craft-agents-oss
+- **语言**: 未知
+- **描述**: 待补充
+- **主要特性**: 待补充
+
+---
+## 156. pingdotgg/t3code
+- **GitHub**: https://github.com/pingdotgg/t3code
 - **语言**: 未知
 - **描述**: 待补充
 - **主要特性**: 待补充

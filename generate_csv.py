@@ -1,0 +1,1169 @@
+#!/usr/bin/env python3
+"""
+Generate trending_repos_analysis.csv with repo descriptions based on research.
+"""
+import csv
+
+OUTPUT_FILE = "/Users/youzeliang/dev/code/python/github-trending-scraper/trending_repos_analysis.csv"
+
+# Format: (url, description, language)
+repos = [
+    (
+        "https://github.com/cocoindex-io/cocoindex",
+        "CocoIndex 是一个面向 AI 的高性能数据转换框架，专为 LLM 应用和 AI Agent 提供持续新鲜的上下文数据。核心引擎采用 Rust 编写，内置增量处理和数据血缘追踪功能，极大提升了 AI 数据管道的开发效率。支持代码库、会议记录、邮件、Slack、PDF、视频等多种数据源接入。从第一天起即可投入生产使用，大幅降低 AI 应用的数据基础建设成本。",
+        "Rust / Python",
+    ),
+    (
+        "https://github.com/tursodatabase/turso",
+        "Turso Database 是用 Rust 从头构建的下一代 SQLite 兼容进程内 SQL 数据库引擎。目标是在保持 SQLite 兼容性的同时，提供更高性能、更丰富特性（如云同步）的数据存储方案。当前处于 BETA 阶段，适合追求高性能本地数据库解决方案的 Rust 开发者尝鲜。",
+        "Rust",
+    ),
+    (
+        "https://github.com/datawhalechina/hello-agents",
+        "Hello-Agents 是 Datawhale 社区推出的系统性 AI Agent 学习教程，覆盖从零开始构建智能体系统的完整知识体系。教程兼顾理论与实战，适合希望掌握 Agent 开发的开发者和研究者。在 2025 年 Agent 元年背景下，填补了中文社区缺乏系统性 Agent 实践教程的空白。内容持续更新，并接受社区贡献。",
+        "Python",
+    ),
+    (
+        "https://github.com/trimstray/the-book-of-secret-knowledge",
+        "The Book of Secret Knowledge 是一个面向系统管理员、DevOps 工程师和网络安全专家的超级知识库，汇集了大量实用列表、手册、速查表、命令行工具和黑客技巧。涵盖 Linux 操作、Web 安全、网络管理、DevOps 最佳实践等广泛技术领域，是开发者日常工作中不可或缺的参考资源。GitHub 星标超过 115k，是程序员必收藏的开源宝库之一。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/ZJU-LLMs/Foundations-of-LLMs",
+        "《大语言模型基础》是浙江大学 LLMs 团队出品的开源教材，系统讲解大语言模型的核心技术原理与工程实践。内容覆盖 Transformer 架构、预训练、微调、RLHF、RAG 等关键技术，适合高校学生、研究人员和工程师深入学习 LLM 全栈知识。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/anthropics/skills",
+        "Anthropic 官方发布的 Claude Code 技能（Skills）集合，提供可用于扩展 Claude Code 能力的官方示例技能包。帮助开发者学习如何为 Claude Code 编写自定义技能，覆盖多种实际工程场景。",
+        "无（配置/文档类）",
+    ),
+    (
+        "https://github.com/apurvsinghgautam/robin",
+        "Robin 是一个轻量级 AI Agent 框架，专注于构建简洁、可扩展的 AI 助手工作流。支持工具调用、多步推理等 Agent 核心能力，适合快速搭建自定义 AI 自动化任务。",
+        "Python",
+    ),
+    (
+        "https://github.com/Shubhamsaboo/awesome-llm-apps",
+        "Awesome LLM Apps 是一个精心整理的 LLM 应用案例集合，收录了基于 GPT、Claude、Gemini 等主流大模型构建的各类实用 AI 应用。每个案例均附带完整代码和教程，涵盖 RAG、AI Agent、多模态应用等热门方向，是学习 LLM 应用开发的绝佳参考仓库。",
+        "Python",
+    ),
+    (
+        "https://github.com/NanmiCoder/MediaCrawler",
+        "MediaCrawler 是一款支持多平台社交媒体数据采集的开源爬虫工具，支持小红书、微博、抖音、B 站、知乎等主流平台的内容抓取。基于 Python 和 Playwright 实现，支持关键词搜索、用户主页、评论区等多维度数据采集，是舆情分析和市场研究的利器。",
+        "Python",
+    ),
+    (
+        "https://github.com/shareAI-lab/learn-claude-code",
+        "learn-claude-code 是一个专注于 Claude Code 使用技巧和最佳实践的学习资源库，帮助开发者快速上手 Anthropic 的 AI 编程助手工具。包含各类实战示例、配置技巧和使用教程，适合希望提升 AI 辅助编程效率的开发者。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/anthropics/claude-code-action",
+        "claude-code-action 是 Anthropic 官方发布的 GitHub Action，将 Claude AI 能力集成到 GitHub 工作流中。支持自动代码审查、PR 助手、Issue 响应等功能，让 Claude 成为 CI/CD 流程中的智能协作伙伴，大幅提升团队研发效率。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+        "chrome-devtools-mcp 是 Chrome DevTools 团队推出的 MCP（Model Context Protocol）服务器，允许 AI 助手通过标准协议与 Chrome 浏览器调试工具交互。支持页面检查、性能分析、网络请求监控等 DevTools 核心功能，为 AI 辅助前端调试开辟了新路径。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/patchy631/ai-engineering-hub",
+        "AI Engineering Hub 是一个系统性的 AI 工程学习资源合集，覆盖 LLM 应用开发、RAG 系统、AI Agent、模型微调等工程实践领域。提供大量配套代码和教程，适合希望从工程视角深入掌握 AI 技术的开发者。",
+        "Python",
+    ),
+    (
+        "https://github.com/MiroMindAI/MiroThinker",
+        "MiroThinker 是一个 AI 驱动的思维导图和可视化推理工具，将大语言模型的推理能力与 Miro 白板的协作可视化相结合。支持将 AI 的思考过程以结构化图形方式呈现，适用于头脑风暴、项目规划等场景。",
+        "Python",
+    ),
+    (
+        "https://github.com/HKUDS/VideoRAG",
+        "VideoRAG 是香港大学数据科学团队推出的视频检索增强生成框架，实现了对长视频内容的语义理解和精准问答。通过将视频切片与向量检索结合，支持基于自然语言对视频内容进行深度检索，是多模态 RAG 领域的前沿研究成果。",
+        "Python",
+    ),
+    (
+        "https://github.com/netbirdio/netbird",
+        "NetBird 是基于 WireGuard® 构建的开源零配置安全网络平台，将点对点私有网络与集中式访问控制无缝结合。无需复杂 VPN 配置，即可在几秒内将设备加入私有覆盖网络，支持 SSO 集成和精细化访问策略，是企业远程办公和 Zero Trust 网络架构的理想选择。",
+        "Go",
+    ),
+    (
+        "https://github.com/C4illin/ConvertX",
+        "ConvertX 是一款自托管的在线文件格式转换工具，支持超过 1000 种文件格式的互转，涵盖视频、文档、图像、音频等各类文件类型。基于 Docker 部署，数据本地处理保障隐私安全，适合个人和企业搭建私有文件转换服务。界面简洁，操作便捷，NAS 用户友好。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/bytedance/UI-TARS-desktop",
+        "UI-TARS Desktop 是字节跳动开源的 AI GUI Agent 桌面应用，基于 UI-TARS 多模态大模型，能够理解并自动操作计算机图形界面。支持截图感知、鼠标键盘控制等完整 GUI 自动化能力，是计算机视觉与 Agent 技术结合的代表性开源项目。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/Johnshall/Shadowrocket-ADBlock-Rules-Forever",
+        "Shadowrocket-ADBlock-Rules-Forever 提供持续维护的 Shadowrocket 广告屏蔽规则集，支持全局过滤广告、追踪器和恶意域名。规则定期自动更新，覆盖主流广告联盟和追踪服务，适合 iOS Shadowrocket 用户用于提升上网体验和隐私保护。",
+        "无（规则/配置类）",
+    ),
+    (
+        "https://github.com/hacksider/Deep-Live-Cam",
+        "Deep-Live-Cam 是一款基于深度学习的实时换脸直播工具，支持单张照片实现视频流中的人脸实时替换。内置 NSFW 内容过滤保障合规使用，适用于创意娱乐、虚拟形象等场景。警告：请遵守当地法律法规，禁止用于非法用途。",
+        "Python",
+    ),
+    (
+        "https://github.com/gyoridavid/ai_agents_az",
+        "ai_agents_az 是一个从零到精通的 AI Agent 学习课程仓库，涵盖 Agent 设计模式、工具调用、多 Agent 协作等核心主题。提供配套代码和教程，适合希望系统学习 AI Agent 开发的工程师和研究者。",
+        "Python",
+    ),
+    (
+        "https://github.com/OpenBMB/ChatDev",
+        "ChatDev 是清华大学 OpenBMB 团队推出的 AI 软件公司模拟框架，由多个扮演不同角色（CEO、CTO、程序员、测试员等）的 LLM Agent 协作完成软件开发任务。通过自然语言需求描述即可自动生成完整可运行的软件项目，是多 Agent 协作研究领域的标志性成果之一。",
+        "Python",
+    ),
+    (
+        "https://github.com/chidiwilliams/buzz",
+        "Buzz 是一款开源的桌面音频转文字工具，基于 OpenAI Whisper 模型实现本地离线语音识别。支持 macOS、Windows 和 Linux 三大平台，可转录麦克风输入或媒体文件，保护用户隐私数据不上传云端，界面简洁易用。",
+        "Python",
+    ),
+    (
+        "https://github.com/grab/cursor-talk-to-figma-mcp",
+        "cursor-talk-to-figma-mcp 是 Grab 开源的 MCP 服务器，让 Cursor AI 编辑器能够直接与 Figma 设计稿交互。通过自然语言描述即可读取设计元素、提取 CSS 样式、生成对应代码，实现设计到代码的智能协作，大幅提升前端开发效率。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/rancher/rancher",
+        "Rancher 是业界领先的开源 Kubernetes 管理平台，提供跨多云、多集群的统一容器管理能力。支持在任意基础设施上部署和管理 Kubernetes 集群，内置完整的访问控制、监控告警和应用商店，是企业级 K8s 运维的首选开源工具。",
+        "Go",
+    ),
+    (
+        "https://github.com/cilium/cilium",
+        "Cilium 是基于 eBPF 技术的开源 Kubernetes 网络、安全和可观测性解决方案，是云原生网络领域的标志性项目。利用 Linux 内核 eBPF 程序动态注入安全和可见性逻辑，无需修改应用程序或容器配置，性能卓越且与内核深度集成，已成为众多大型企业 K8s 集群的核心网络插件。",
+        "Go",
+    ),
+    (
+        "https://github.com/wavetermdev/waveterm",
+        "Wave Terminal 是一款开源跨平台现代终端工具，内置 AI 助手、文件预览、网页浏览器和 SSH 管理等高级功能。界面采用标签页和窗口化布局，将传统命令行与现代 GUI 工具整合为一体，适合追求高效工作流的开发者日常使用。",
+        "Go / TypeScript",
+    ),
+    (
+        "https://github.com/ComposioHQ/awesome-claude-skills",
+        "Awesome Claude Skills 是 ComposioHQ 整理的 Claude Code Skills 精选合集，收录了各类高质量、可直接使用的 Claude Code 技能包。涵盖代码审查、项目管理、调试辅助等多种应用场景，帮助开发者快速扩展 Claude Code 的工作能力。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/nautechsystems/nautilus_trader",
+        "NautilusTrader 是专为专业量化交易者设计的高性能、低延迟事件驱动型算法交易平台，核心引擎由 Rust 实现，Python 提供策略开发接口。支持微秒级数据处理、多资产类别策略、回测与实盘统一架构，是开源量化交易领域的顶尖框架之一，适合追求极致性能的量化工程师。",
+        "Python / Rust",
+    ),
+    (
+        "https://github.com/DataTalksClub/data-engineering-zoomcamp",
+        "Data Engineering Zoomcamp 是 DataTalks.Club 推出的免费数据工程训练营课程，涵盖 BigQuery、Spark、Kafka、dbt、Airflow 等主流数据工程工具的系统教学。每年定期开班，提供完整视频、代码和作业，是数据工程师转型和进阶的最佳学习资源之一。",
+        "Python",
+    ),
+    (
+        "https://github.com/alirezarezvani/claude-skills",
+        "个人开发者分享的 Claude Code Skills 集合，包含各类实用工作流技能，用于扩展 Claude Code 的自动化处理能力，覆盖代码生成、文档撰写等场景。",
+        "无（配置类）",
+    ),
+    (
+        "https://github.com/lukasz-madon/awesome-remote-job",
+        "Awesome Remote Job 是一个专注于远程工作资源的精心整理合集，收录了招聘网站、公司列表、工具推荐、社区论坛等远程工作全流程所需资源。内容持续更新，适合求职者、自由职业者和远程工作爱好者参考使用，是远程工作领域最受欢迎的 Awesome 系列资源之一。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/EveryInc/compound-engineering-plugin",
+        "compound-engineering-plugin 是 Every Inc. 开发的工程效率插件，通过 AI 辅助实现复合工程工作流的自动化和加速，适用于软件开发生命周期的多个环节。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/liyupi/ai-guide",
+        "ai-guide 是程序员鱼皮（liyupi）整理的 AI 工具和学习资源导航，系统梳理了国内外主流 AI 工具的使用场景、入门方法和学习路径。适合初学者快速了解 AI 领域全貌，也是开发者跟踪 AI 工具生态的实用参考手册。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/block/goose",
+        "Goose 是 Block（前 Square）开源的本地 AI Agent 工具，支持在本地运行各种 AI 任务、调用工具和执行代码。强调隐私和本地优先，不依赖云端服务，适合对数据隐私有较高要求的开发者使用。",
+        "Python / Rust",
+    ),
+    (
+        "https://github.com/Asabeneh/30-Days-Of-Python",
+        "30 Days of Python 是一套由浅入深的 Python 30 天学习挑战教程，每天一个主题，覆盖从基础语法到数据处理、Web 开发、数据科学等进阶内容。内容免费、中文友好，是全球最受欢迎的 Python 自学教程之一，GitHub 星标超过 45k。",
+        "Python",
+    ),
+    (
+        "https://github.com/OpenBMB/UltraRAG",
+        "UltraRAG 是清华大学 OpenBMB 团队推出的企业级 RAG（检索增强生成）系统，支持多种文档格式、多路召回策略和灵活的知识库管理。提供完整的端到端 RAG 解决方案，适合企业构建私有知识库问答系统，是国内 RAG 工程化的优秀开源项目。",
+        "Python",
+    ),
+    (
+        "https://github.com/kubernetes/ingress-nginx",
+        "ingress-nginx 是 Kubernetes 官方维护的 Nginx Ingress Controller，为 K8s 集群提供基于 Nginx 的 HTTP/HTTPS 流量路由和负载均衡服务。支持 SSL 终止、路径重写、限流等丰富特性，是 Kubernetes 生产环境中最广泛部署的 Ingress 解决方案之一。",
+        "Go",
+    ),
+    (
+        "https://github.com/moltbot/moltbot",
+        "moltbot 是一个 AI 驱动的自动化机器人框架，支持构建自定义工作流和任务自动化 Agent，适用于各类重复性任务的智能化处理。",
+        "Python",
+    ),
+    (
+        "https://github.com/reconurge/flowsint",
+        "Flowsint 是一款开源的 OSINT（开源情报）调查工具，通过可视化流程图的方式串联多种情报收集手段，帮助安全研究人员和调查人员高效进行目标信息收集和关联分析。",
+        "Python",
+    ),
+    (
+        "https://github.com/amantus-ai/vibetunnel",
+        "VibeTunnel 是一个将本地终端和开发环境安全暴露到互联网的隧道工具，让开发者可以通过任意浏览器远程访问本地服务和终端。支持 AI Agent 远程操控本地环境，适合远程开发、演示和协作场景。",
+        "Go / TypeScript",
+    ),
+    (
+        "https://github.com/j178/prek",
+        "prek 是一个轻量级 Kubernetes 资源健康检查工具，支持对集群内各类资源的状态监控和异常预警，帮助运维人员快速定位 K8s 环境问题。",
+        "Go",
+    ),
+    (
+        "https://github.com/langchain-ai/rag-from-scratch",
+        "RAG From Scratch 是 LangChain 官方出品的 RAG 技术从零实现系列教程，通过完整的代码示例逐步讲解 RAG 系统的各个组成部分。涵盖文档加载、向量检索、重排序、高级 RAG 策略等核心技术，是学习 RAG 工程实践的权威教程。",
+        "Python",
+    ),
+    (
+        "https://github.com/openai/skills",
+        "OpenAI 官方发布的 Skills 集合，提供扩展 OpenAI 开发工具能力的官方技能示例，涵盖多种实际工程应用场景。",
+        "无（配置/文档类）",
+    ),
+    (
+        "https://github.com/disler/claude-code-hooks-mastery",
+        "claude-code-hooks-mastery 是一个专注于 Claude Code Hooks（钩子）高级用法的学习仓库，通过大量实战示例展示如何利用 Hooks 机制定制 Claude Code 的行为流程，实现更精细的 AI 编程工作流控制。",
+        "Python",
+    ),
+    (
+        "https://github.com/ankitects/anki",
+        "Anki 是全球最流行的开源间隔重复学习软件，通过科学的记忆曲线算法帮助用户高效记忆各类知识。支持自定义卡片模板、多媒体内容、插件扩展和多平台同步，广泛应用于语言学习、医学考试、资格证备考等场景，是记忆类软件的行业标杆。",
+        "Rust / Python",
+    ),
+    (
+        "https://github.com/fish-shell/fish-shell",
+        "Fish（Friendly Interactive SHell）是一款注重用户体验的现代化命令行 Shell，开箱即用地提供语法高亮、自动补全、Web 配置界面等高级特性。无需复杂配置即可获得极佳的交互体验，是对 Bash/Zsh 的现代化替代方案，深受开发者喜爱。",
+        "Rust / C++",
+    ),
+    (
+        "https://github.com/linshenkx/prompt-optimizer",
+        "Prompt Optimizer 是一款 AI 提示词优化工具，能够自动分析和改善用户输入的提示词质量，使其更符合大语言模型的理解习惯。支持多种优化策略和自定义规则，帮助开发者和普通用户获得更好的 AI 交互效果。",
+        "Python",
+    ),
+    (
+        "https://github.com/ZeroTworu/anet",
+        "anet 是一个轻量级 Python 异步网络库，提供简洁的 API 用于构建高性能异步网络应用和服务，适合对网络编程有特定需求的 Python 开发者使用。",
+        "Python",
+    ),
+    (
+        "https://github.com/DataExpert-io/data-engineer-handbook",
+        "Data Engineer Handbook 是由数据工程社区共同维护的数据工程师学习手册，系统整理了成为专业数据工程师所需掌握的核心技能、工具和资源。内容涵盖数据仓库、流处理、数据质量、职业发展等全方位主题，是数据工程领域最受推崇的开源学习指南之一。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/carlvellotti/claude-code-pm-course",
+        "claude-code-pm-course 是一门面向产品经理的 Claude Code 使用课程，教授非技术背景人员如何借助 AI 编程工具参与和推动软件开发流程，降低产品经理参与技术决策的门槛。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/cheahjs/free-llm-api-resources",
+        "free-llm-api-resources 是一个持续更新的免费大语言模型 API 资源汇总，收录了各平台提供的免费额度、开放接口和试用服务信息。帮助开发者在预算有限的情况下快速找到可用的 LLM API 资源，是 AI 应用开发者的实用参考。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/Jeffallan/claude-skills",
+        "个人开发者整理的 Claude Code Skills 集合，涵盖多种实用开发工作流和自动化技能，用于增强 Claude Code 的日常开发辅助能力。",
+        "无（配置类）",
+    ),
+    (
+        "https://github.com/cinnyapp/cinny",
+        "Cinny 是一款基于 Matrix 协议的开源即时通讯客户端，提供类 Slack/Discord 的现代化聊天界面。支持端对端加密、多服务器接入和自托管部署，是注重隐私保护的团队协作和个人通讯的优质选择。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/HandsOnLLM/Hands-On-Large-Language-Models",
+        "《Hands-On Large Language Models》是一本配套 O'Reilly 出版社同名书籍的开源代码仓库，提供大量动手实践的 LLM 项目代码。内容覆盖文本嵌入、语义搜索、文本分类、文本生成、微调等核心 LLM 技术，是 LLM 工程实践的权威参考书。",
+        "Python",
+    ),
+    (
+        "https://github.com/google-deepmind/superhuman",
+        "Superhuman 是 Google DeepMind 发布的研究项目，探索 AI 在特定任务上超越人类专家水平的方法和评估框架，是 AI 能力边界研究的前沿成果。",
+        "Python",
+    ),
+    (
+        "https://github.com/Zipstack/unstract",
+        "Unstract 是一款无代码的 LLM 驱动文档处理平台，能够自动从非结构化 PDF、合同、报表等文档中提取结构化数据。支持自定义提取模板和 API 集成，大幅降低企业文档数字化的技术门槛，是文档 AI 领域的优秀开源解决方案。",
+        "Python",
+    ),
+    (
+        "https://github.com/moonshine-ai/moonshine",
+        "Moonshine 是由 Useful Sensors 推出的轻量级语音识别模型，针对边缘设备和实时语音转文字场景优化，速度比同精度 Whisper 模型快数倍。支持英语识别，适合在 Raspberry Pi、手机等资源受限设备上部署本地语音识别服务。",
+        "Python",
+    ),
+    (
+        "https://github.com/ashishps1/awesome-system-design-resources",
+        "Awesome System Design Resources 是一个系统设计学习资源精选合集，涵盖分布式系统、数据库设计、缓存策略、消息队列、微服务等核心系统设计主题。适合准备技术面试、学习系统架构的工程师使用，是系统设计领域最受欢迎的 Awesome 系列资源之一。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/NirDiamant/RAG_Techniques",
+        "RAG Techniques 是一个系统梳理各类 RAG 进阶技术的实践手册，涵盖 Naive RAG、Advanced RAG、Modular RAG 等多种架构模式，每种技术配有完整代码实现。是目前 GitHub 上最全面的 RAG 技术图谱之一，适合深入研究检索增强生成的工程师参考。",
+        "Python",
+    ),
+    (
+        "https://github.com/huggingface/skills",
+        "Hugging Face 官方发布的 Skills 集合，提供扩展 AI 开发工具的官方技能示例，覆盖模型推理、数据集处理等核心 ML 工程场景。",
+        "无（配置/文档类）",
+    ),
+    (
+        "https://github.com/databricks-solutions/ai-dev-kit",
+        "AI Dev Kit 是 Databricks 发布的 AI 应用开发工具包，提供在 Databricks 平台上构建、评估和部署 AI 应用的完整开发脚手架和最佳实践。",
+        "Python",
+    ),
+    (
+        "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering",
+        "Agent Skills for Context Engineering 聚焦于上下文工程（Context Engineering）这一 AI 应用开发核心技术，提供系统性的技能集和最佳实践，帮助开发者构建能高效管理和利用上下文的 AI Agent。",
+        "无（配置/文档类）",
+    ),
+    (
+        "https://github.com/f/prompts.chat",
+        "prompts.chat 是一个实用的 ChatGPT 提示词工程网站对应的开源项目，收录了数百个针对不同角色和场景优化的系统级提示词（System Prompts）。是 AI 提示工程领域引用率最高的开源资源之一，GitHub 星标超过 110k。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/mihail911/modern-software-dev-assignments",
+        "modern-software-dev-assignments 是一套面向现代 AI 辅助软件开发的学习作业集，通过实际工程任务帮助开发者掌握将 AI 工具融入日常开发工作流的最佳实践。",
+        "Python",
+    ),
+    (
+        "https://github.com/ruvnet/ruvector",
+        "ruvector 是一个高性能向量数据库和相似度搜索引擎，专为 AI 应用的语义检索场景优化，支持大规模向量存储和毫秒级近似最近邻搜索。",
+        "Rust / Python",
+    ),
+    (
+        "https://github.com/GVCLab/PersonaLive",
+        "PersonaLive 是一个 AI 数字人生成和直播互动系统，通过大语言模型驱动虚拟角色进行实时对话和直播互动，适用于虚拟主播、客服机器人等应用场景。",
+        "Python",
+    ),
+    (
+        "https://github.com/farion1231/cc-switch",
+        "cc-switch 是一个 Claude Code 账号/配置快速切换工具，帮助需要管理多个 Claude Code 账号或配置的开发者高效切换工作环境。",
+        "Shell",
+    ),
+    (
+        "https://github.com/ruvnet/ruflo",
+        "ruflo 是一个 AI 驱动的工作流自动化框架，支持通过可视化节点编排复杂的多步骤 AI 任务流程，适合构建企业级 AI 自动化解决方案。",
+        "Python",
+    ),
+    (
+        "https://github.com/NousResearch/hermes-agent",
+        "hermes-agent 是 NousResearch 发布的开源 AI Agent 框架，基于 Hermes 系列模型构建，支持工具调用、多轮对话和复杂推理任务，是开源 Agent 生态中的重要成员。",
+        "Python",
+    ),
+    (
+        "https://github.com/NVlabs/GR00T-WholeBodyControl",
+        "GR00T-WholeBodyControl 是 NVIDIA Research 发布的机器人全身控制研究框架，基于 Project GR00T 基础模型实现人形机器人的全身协调运动控制，是具身智能领域的前沿研究成果。",
+        "Python",
+    ),
+    (
+        "https://github.com/microsoft/markitdown",
+        "MarkItDown 是微软 AutoGen 团队开源的文档转 Markdown 工具，支持将 Word、Excel、PowerPoint、PDF、HTML、图片等多种格式文件转换为 LLM 友好的 Markdown 格式。简单易用、转换质量高，GitHub 星标超过 106k，是 AI 文档预处理流程中的利器。",
+        "Python",
+    ),
+    (
+        "https://github.com/K-Dense-AI/claude-scientific-skills",
+        "claude-scientific-skills 是专为科学研究场景设计的 Claude Code Skills 集合，提供文献检索、数据分析、实验记录等科研工作流自动化技能，帮助科研人员提升工作效率。",
+        "无（配置类）",
+    ),
+    (
+        "https://github.com/agentscope-ai/agentscope",
+        "AgentScope 是阿里巴巴开源的多 Agent 应用开发框架，提供简洁的 API 和丰富的内置 Agent 组件，支持快速构建生产级多 Agent 系统。内置通信协议、状态管理和容错机制，是国内多 Agent 框架的优秀代表。",
+        "Python",
+    ),
+    (
+        "https://github.com/agentscope-ai/ReMe",
+        "ReMe 是 AgentScope 团队推出的 AI Agent 记忆管理系统，为 Agent 提供长期记忆存储、检索和更新能力，解决 LLM 上下文窗口有限导致的记忆遗失问题，是构建有状态 Agent 应用的重要基础组件。",
+        "Python",
+    ),
+    (
+        "https://github.com/LMCache/LMCache",
+        "LMCache 是一个专为大语言模型推理优化的 KV Cache 共享与复用框架，通过跨请求、跨实例的 KV Cache 共享显著降低 LLM 推理延迟和计算成本。在长文档问答、多轮对话等场景下性能提升显著，是 LLM 推理基础设施的前沿优化技术。",
+        "Python",
+    ),
+    (
+        "https://github.com/xpzouying/xiaohongshu-mcp",
+        "xiaohongshu-mcp 是一个小红书 MCP（Model Context Protocol）服务器，允许 AI 助手通过标准协议与小红书平台交互，支持内容搜索、笔记获取等功能，为 AI 应用接入小红书数据提供便捷方案。",
+        "Go",
+    ),
+    (
+        "https://github.com/openclaw/clawhub",
+        "ClawHub 是一个 AI 工具和资源聚合平台，提供多种 AI 服务的统一接入和管理能力，适合希望集中管理和使用多个 AI 工具的开发者和团队。",
+        "Python",
+    ),
+    (
+        "https://github.com/msitarzewski/agency-agents",
+        "agency-agents 是一个面向创意营销代理公司场景设计的 AI Agent 框架，支持自动化营销文案生成、创意方案策划等广告公司日常工作流程。",
+        "Python",
+    ),
+    (
+        "https://github.com/FujiwaraChoki/MoneyPrinterV2",
+        "MoneyPrinterV2 是一款 AI 自动生成视频内容并发布到 YouTube 等平台的自动化工具，支持从选题、脚本生成到视频渲染的全流程自动化。通过 AI 技术降低内容创作门槛，适合希望通过视频内容变现的创作者使用。请注意遵守各平台服务条款。",
+        "Python",
+    ),
+    (
+        "https://github.com/ItzCrazyKns/Perplexica",
+        "Perplexica 是 Perplexity AI 的开源替代方案，提供 AI 驱动的搜索引擎功能，能够实时联网搜索并以对话方式整合答案。支持本地部署，保护用户隐私，并支持 Ollama 等本地模型接入，是追求隐私保护的用户首选的开源 AI 搜索工具。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/FlowiseAI/Flowise",
+        "Flowise 是一款开源的低代码 LLM 应用构建平台，通过可视化拖拽界面快速搭建基于 LangChain 的 AI 工作流。支持聊天机器人、RAG 问答、Agent 等多种应用模式，内置多种 LLM 和工具集成，是构建企业级 AI 应用的高效开发工具。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/TheCraigHewitt/seomachine",
+        "SEO Machine 是一个 AI 驱动的 SEO 内容自动化工具，支持关键词分析、内容生成和 SEO 优化建议，帮助内容营销团队提升搜索引擎排名效率。",
+        "Python",
+    ),
+    (
+        "https://github.com/inclusionAI/AReaL",
+        "AReaL 是由 inclusionAI 团队开源的强化学习框架，专为训练大语言模型推理能力设计，通过基于规则的奖励信号提升模型在数学、代码等推理密集型任务上的表现。",
+        "Python",
+    ),
+    (
+        "https://github.com/QwenLM/Qwen-Agent",
+        "Qwen-Agent 是阿里通义千问团队开源的 AI Agent 框架，基于 Qwen 系列大模型构建，支持函数调用、代码解释器、搜索工具等多种 Agent 能力。提供完整的工具集成接口和多 Agent 协作支持，是基于 Qwen 模型开发 AI 应用的官方推荐框架。",
+        "Python",
+    ),
+    (
+        "https://github.com/Ed1s0nZ/CyberStrikeAI",
+        "CyberStrikeAI 是一个 AI 赋能的网络安全攻防工具集，将大语言模型与渗透测试、漏洞扫描等安全工具结合，辅助安全研究人员进行自动化攻防演练和漏洞分析。",
+        "Python",
+    ),
+    (
+        "https://github.com/lingfengQAQ/webnovel-writer",
+        "webnovel-writer 是一个 AI 辅助网络小说创作工具，利用大语言模型自动续写、优化章节内容，帮助网文作者提升创作效率并保持故事连贯性。",
+        "Python",
+    ),
+    (
+        "https://github.com/toeverything/AFFiNE",
+        "AFFiNE 是一款将笔记、白板、文档和数据库功能融为一体的开源知识管理工具，定位为 Notion 和 Miro 的开源替代方案。支持本地优先、端到端加密、离线使用和多人协作，提供 AI 写作助手功能，界面精美、功能强大，是知识工作者的理想工具。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/koala73/worldmonitor",
+        "worldmonitor 是一款全球市场监控工具，实时追踪和显示全球股市、商品、外汇等金融市场的动态数据，适合投资者和交易员快速了解全球市场整体状况。",
+        "Python",
+    ),
+    (
+        "https://github.com/Raphire/Win11Debloat",
+        "Win11Debloat 是一款 Windows 11 系统精简工具，通过 PowerShell 脚本自动移除预装的广告软件、无用应用和遥测功能，优化系统隐私设置并提升系统运行速度。操作简单、可逆，是 Windows 用户优化系统体验的实用工具。",
+        "PowerShell",
+    ),
+    (
+        "https://github.com/promptfoo/promptfoo",
+        "promptfoo 是一款专业的 LLM 提示词测试和评估工具，支持对比不同模型和提示词在各类测试用例上的表现，提供自动化评估报告。内置多种评估指标和安全测试功能，是 LLM 应用开发中提示词质量保障的核心工具。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/shanraisshan/claude-code-best-practice",
+        "claude-code-best-practice 整理了 Claude Code 使用的最佳实践和经验技巧，帮助开发者更高效地利用 Claude Code 进行日常开发工作，避免常见误区。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/langflow-ai/openrag",
+        "OpenRAG 是 LangFlow 团队推出的开源 RAG 平台，提供完整的文档导入、向量化、检索和问答流程，支持多种文件格式和向量数据库，是构建企业知识库问答系统的一站式开源解决方案。",
+        "Python",
+    ),
+    (
+        "https://github.com/InsForge/InsForge",
+        "InsForge 是一个 AI 驱动的代码生成和软件工程自动化平台，支持从需求描述自动生成完整的项目代码结构和业务逻辑，加速软件开发全流程。",
+        "Python",
+    ),
+    (
+        "https://github.com/vectorize-io/hindsight",
+        "Hindsight 是 Vectorize.io 开源的 RAG 评估和优化工具，通过分析 RAG 系统的检索质量和生成质量，提供针对性的优化建议，帮助开发者持续改进 RAG 应用的效果。",
+        "Python",
+    ),
+    (
+        "https://github.com/dolthub/dolt",
+        "Dolt 是世界上第一款支持 Git 操作语义的 SQL 数据库，提供完整的版本控制、分支、合并和差异比较功能。完全兼容 MySQL 协议，可用 MySQL 客户端直接连接，是数据版本管理和团队协作数据库的创新解决方案。",
+        "Go",
+    ),
+    (
+        "https://github.com/Q00/ouroboros",
+        "Ouroboros 是一个自我进化的 AI 系统框架，通过反思和自我改进机制让 AI Agent 能够持续优化自身的行为策略和工具使用能力，是 AI 自主学习领域的探索性项目。",
+        "Python",
+    ),
+    (
+        "https://github.com/dimensionalOS/dimos",
+        "DimOS 是一个面向 AI 机器人的操作系统框架，为具身智能（Embodied AI）机器人提供统一的感知、规划和执行接口，支持多模态传感器融合和实时控制循环，是机器人 AI 中间件的前沿探索。",
+        "Python",
+    ),
+    (
+        "https://github.com/SynkraAI/aiox-core",
+        "aiox-core 是 SynkraAI 开源的 AI 应用开发核心框架，提供统一的模型接入、工具管理和 Agent 编排能力，适合快速构建企业级 AI 应用服务。",
+        "Python",
+    ),
+    (
+        "https://github.com/Crosstalk-Solutions/project-nomad",
+        "Project Nomad 是一个跨环境 AI Agent 工作框架，支持 Agent 在不同计算环境和平台间无缝迁移和执行任务，适合需要在多云或混合部署场景下运行 AI 工作流的团队。",
+        "Python",
+    ),
+    (
+        "https://github.com/sickn33/antigravity-awesome-skills",
+        "antigravity-awesome-skills 是个人整理的 Claude Code Skills 精选集，收录了各类提升开发效率的实用技能，覆盖代码生成、测试、文档等多种工程场景。",
+        "无（配置类）",
+    ),
+    (
+        "https://github.com/langchain-ai/deepagents",
+        "DeepAgents 是 LangChain 推出的深度 Agent 框架，支持构建具备长期记忆、多步规划和复杂工具调用能力的高级 AI Agent，是 LangChain 生态中 Agent 能力的重要演进。",
+        "Python",
+    ),
+    (
+        "https://github.com/YishenTu/claudian",
+        "Claudian 是一个基于 Claude 模型的 AI 编程助手增强工具，提供更符合工程实践的代码生成、重构和调试辅助功能，适合希望深度定制 Claude 编程助手行为的开发者。",
+        "Python",
+    ),
+    (
+        "https://github.com/langchain-ai/open-swe",
+        "Open-SWE 是 LangChain 基于 SWE-bench 评测标准构建的开源软件工程 Agent，能够自主分析 GitHub Issue、修改代码并提交 PR。通过模拟真实软件工程师的工作流程，是当前开源社区中代码 Agent 能力的重要评测参考实现。",
+        "Python",
+    ),
+    (
+        "https://github.com/affaan-m/everything-claude-code",
+        "everything-claude-code 是一个全面的 Claude Code 资源汇总仓库，收录了 Claude Code 的使用技巧、插件、Skills、最佳实践和社区经验，是 Claude Code 用户的综合参考手册。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/andrewyng/context-hub",
+        "Context Hub 是 Andrew Ng 推出的 AI 上下文管理工具，帮助开发者在构建 LLM 应用时高效组织、管理和复用各类上下文信息，是上下文工程（Context Engineering）实践的辅助平台。",
+        "Python",
+    ),
+    (
+        "https://github.com/opendataloader-project/opendataloader-pdf",
+        "opendataloader-pdf 是一个专注于 PDF 文档智能解析和数据提取的开源工具，支持复杂布局、表格、图文混排等各类 PDF 内容的高精度结构化提取，适合 AI 数据管道中的文档预处理场景。",
+        "Python",
+    ),
+    (
+        "https://github.com/TauricResearch/TradingAgents",
+        "TradingAgents 是 Tauric Research 开源的多智能体 LLM 金融交易框架，通过模拟真实交易公司的多角色协作决策流程（分析师、研究员、交易员、风控），实现 AI 驱动的智能投资决策。支持 A 股、港股、美股分析，GitHub 星标超 6.9 万，是 AI 量化交易领域最热门的开源项目之一。",
+        "Python",
+    ),
+    (
+        "https://github.com/openrocket/openrocket",
+        "OpenRocket 是一款专业的开源火箭模拟软件，支持完整的火箭飞行物理仿真、稳定性分析和弹道预测，被业余火箭爱好者和专业航天工程师广泛使用。提供 3D 可视化设计界面和详细的飞行数据分析功能，是模型火箭领域最权威的开源工具。",
+        "Java",
+    ),
+    (
+        "https://github.com/systemd/systemd",
+        "systemd 是 Linux 系统的核心初始化和服务管理系统，负责启动用户空间进程和管理系统服务。已成为绝大多数主流 Linux 发行版的默认 init 系统，提供服务依赖管理、日志记录（journald）、网络管理（networkd）等完整的系统管理功能。",
+        "C",
+    ),
+    (
+        "https://github.com/jamwithai/production-agentic-rag-course",
+        "production-agentic-rag-course 是一门面向生产环境的 Agentic RAG 实战课程，教授如何构建企业级可靠、可扩展的 RAG 系统，覆盖从原型到生产部署的完整工程实践。",
+        "Python",
+    ),
+    (
+        "https://github.com/HKUDS/LightRAG",
+        "LightRAG 是香港大学数据科学团队推出的轻量级 RAG 框架，通过图结构增强的知识检索实现更准确的上下文理解。相比传统 RAG，在处理复杂多跳问题上表现更优，是当前最受关注的下一代 RAG 架构之一。",
+        "Python",
+    ),
+    (
+        "https://github.com/harry0703/MoneyPrinterTurbo",
+        "MoneyPrinterTurbo 是一款 AI 全自动短视频生成工具，输入主题即可自动完成脚本撰写、素材搜索、配音合成和视频剪辑，支持中英双语内容和多平台发布。是国内最受欢迎的 AI 视频自动化开源项目之一，GitHub 星标超过 25k。",
+        "Python",
+    ),
+    (
+        "https://github.com/tinygrad/tinygrad",
+        "tinygrad 是 Andrej Karpathy 等人推动的极简深度学习框架，核心代码仅约 1000 行 Python，却能运行各类主流神经网络架构。以教育性和可读性见长，同时支持 GPU 加速，是理解深度学习底层原理的最佳学习材料。",
+        "Python",
+    ),
+    (
+        "https://github.com/jingyaogong/minimind",
+        "MiniMind 是一个从零开始训练小型语言模型（约 26M 参数）的完整实现项目，提供完整的预训练、SFT、RLHF 全流程代码。帮助开发者和研究者以极低计算成本理解 LLM 训练全过程，是 LLM 学习实践领域最受欢迎的中文开源项目之一。",
+        "Python",
+    ),
+    (
+        "https://github.com/kepano/obsidian-skills",
+        "obsidian-skills 是 Obsidian 笔记应用创始人 kepano 分享的 Claude Code Skills 集合，包含面向个人知识管理和产品开发场景的实用技能，适合 Obsidian 用户和产品开发者参考。",
+        "无（配置类）",
+    ),
+    (
+        "https://github.com/hesreallyhim/awesome-claude-code",
+        "Awesome Claude Code 是一个社区维护的 Claude Code 资源精选列表，汇集了高质量的 Skills、Hooks、配置技巧和使用教程，帮助开发者充分挖掘 Claude Code 的使用潜力。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/pascalorg/editor",
+        "Pascal Editor 是一个面向 AI 时代的现代化代码编辑器，集成了 AI 辅助编程、实时协作和智能代码补全等功能，旨在为开发者提供更流畅的 AI 协作编程体验。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/mvanhorn/last30days-skill",
+        "last30days-skill 是一个 Claude Code Skill，用于快速分析和总结过去 30 天的工作记录、提交历史或项目进展，方便开发者生成周期性工作报告。",
+        "无（配置类）",
+    ),
+    (
+        "https://github.com/BerriAI/litellm",
+        "LiteLLM 是一个统一的 LLM API 代理层，支持通过同一套 OpenAI 格式接口调用 100+ 大语言模型（包括 Claude、Gemini、GPT、Mistral 等）。内置负载均衡、费用追踪、缓存和日志功能，是企业级 LLM 基础设施的核心组件，GitHub 星标超过 16k。",
+        "Python",
+    ),
+    (
+        "https://github.com/usestrix/strix",
+        "Strix 是一个 AI 驱动的代码审查和质量分析工具，自动检测代码问题、安全漏洞和性能瓶颈，并提供详细的改进建议，适合集成到 CI/CD 流程中提升代码质量。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/letta-ai/claude-subconscious",
+        "claude-subconscious 是 Letta AI（MemGPT 团队）推出的 Claude Code 记忆增强 Skill，为 Claude Code 提供持久化的工作记忆能力，让 AI 助手能够跨会话记住项目上下文、偏好设置和历史决策。",
+        "Python",
+    ),
+    (
+        "https://github.com/Yeachan-Heo/oh-my-claudecode",
+        "oh-my-claudecode 是一套 Claude Code 的一键配置和增强方案，类似 oh-my-zsh 对 Zsh 的功能扩展，提供开箱即用的主题、插件和预置 Skills，让 Claude Code 的使用体验更佳。",
+        "Shell",
+    ),
+    (
+        "https://github.com/Vaibhavs10/insanely-fast-whisper",
+        "Insanely Fast Whisper 是基于 OpenAI Whisper 优化的超高速语音识别工具，通过 Flash Attention 2、Batched Inference 等技术手段，将 Whisper 的转录速度提升数十倍。支持一行命令完成本地音视频转文字，非常适合批量音频处理场景。",
+        "Python",
+    ),
+    (
+        "https://github.com/datalab-to/chandra",
+        "Chandra 是 datalab.to 团队推出的文档理解和解析工具，利用多模态 AI 技术实现对复杂文档（PDF、图表、表格等）的高精度结构化解析，为 AI 应用提供高质量的文档数据输入。",
+        "Python",
+    ),
+    (
+        "https://github.com/onyx-dot-app/onyx",
+        "Onyx（前 Danswer）是一款开源的企业级 AI 知识助手，支持连接 Google Drive、Slack、GitHub、Notion 等数十种企业数据源，在私有数据上构建安全的 AI 问答系统。支持本地部署保障数据隐私，是企业知识管理 AI 化转型的优选方案。",
+        "Python",
+    ),
+    (
+        "https://github.com/manaflow-ai/cmux",
+        "cmux 是一个终端会话多路复用和 AI 集成工具，将 tmux 的多会话管理能力与 AI 辅助结合，支持 AI 自动分析终端输出并提供智能建议，提升开发者命令行工作效率。",
+        "Go",
+    ),
+    (
+        "https://github.com/luongnv89/claude-howto",
+        "claude-howto 是一个 Claude Code 使用技巧和 How-to 指南合集，通过具体示例讲解如何有效使用 Claude Code 解决各类编程问题，适合初学者快速上手。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/fastfetch-cli/fastfetch",
+        "Fastfetch 是一款快速的系统信息展示工具，类似 neofetch 但性能更优、可配置性更强。用 C 语言编写，支持 Linux、macOS、Windows 等多平台，能以美观的格式在终端展示 CPU、内存、GPU、OS 等系统信息，深受开发者和 Linux 爱好者喜爱。",
+        "C",
+    ),
+    (
+        "https://github.com/freeCodeCamp/freeCodeCamp",
+        "freeCodeCamp 是全球最大的免费编程教育平台之一，提供从 Web 开发基础到数据科学、机器学习的完整免费课程体系，配套互动式在线练习和项目实战。已帮助数百万人转行成为软件开发者，是最受欢迎的开源教育项目，GitHub 星标超过 415k。",
+        "TypeScript / JavaScript",
+    ),
+    (
+        "https://github.com/sherlock-project/sherlock",
+        "Sherlock 是一款强大的开源 OSINT 用户名溯源工具，能在数百个社交媒体平台上同时搜索指定用户名是否存在对应账号。常用于安全研究、身份调查等场景，是渗透测试和情报收集工作中最常用的开源工具之一。",
+        "Python",
+    ),
+    (
+        "https://github.com/Dimillian/Skills",
+        "Dimillian/Skills 是 iOS 开发者 Dimillian 分享的 Claude Code Skills 集合，包含 iOS 和 macOS 应用开发相关的实用工作流技能，适合 Apple 平台开发者参考。",
+        "无（配置类）",
+    ),
+    (
+        "https://github.com/neovim/neovim",
+        "Neovim 是 Vim 文本编辑器的现代化重构版本，修复了 Vim 的历史遗留问题，内置 LSP 支持、异步任务、内嵌 Lua 脚本引擎和更丰富的插件 API。拥有繁荣的插件生态，是追求高效文本编辑的开发者的首选工具，深受命令行爱好者推崇。",
+        "C / Lua",
+    ),
+    (
+        "https://github.com/jwasham/coding-interview-university",
+        "Coding Interview University 是一套面向软件工程技术面试的系统学习计划，覆盖数据结构、算法、操作系统、网络等计算机科学核心知识。作者通过该计划成功入职亚马逊，已成为程序员刷题和备战 FAANG 面试的最受欢迎开源指南，GitHub 星标超过 310k。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/aaif-goose/goose",
+        "aaif-goose/goose 是一个 AI Agent 相关项目，专注于特定领域的智能自动化任务处理能力。",
+        "Python",
+    ),
+    (
+        "https://github.com/forrestchang/andrej-karpathy-skills",
+        "andrej-karpathy-skills 是受 Andrej Karpathy 的技术风格启发整理的 Claude Code Skills 集合，聚焦于深度学习和 AI 工程领域的实用工作流，适合 ML 工程师参考使用。",
+        "无（配置类）",
+    ),
+    (
+        "https://github.com/goharbor/harbor",
+        "Harbor 是 CNCF 毕业的企业级开源容器镜像仓库，提供镜像安全扫描、访问控制、内容信任和镜像复制等企业级特性。是云原生应用部署中容器镜像管理的行业标准解决方案，广泛应用于大型企业的私有容器注册中心建设。",
+        "Go",
+    ),
+    (
+        "https://github.com/coleam00/Archon",
+        "Archon 是一个 AI Agent 自动构建 AI Agent 的元框架，能够根据用户需求自动设计并生成新的 AI Agent 代码。通过 LLM 的代码生成能力实现 Agent 的自我繁殖，是 AI 自动化编程领域的前沿探索项目。",
+        "Python",
+    ),
+    (
+        "https://github.com/shiyu-coder/Kronos",
+        "Kronos 是一个面向时序数据和时间感知任务的 AI 推理框架，通过专门的时间建模机制提升 LLM 在时序预测、事件排序等时间相关任务上的准确性。",
+        "Python",
+    ),
+    (
+        "https://github.com/multica-ai/multica",
+        "Multica 是一个多模态 AI 应用平台，支持文本、图像、音频等多种模态的统一处理和交互，为开发者提供便捷的多模态 AI 能力接入接口。",
+        "Python",
+    ),
+    (
+        "https://github.com/Lordog/dive-into-llms",
+        "Dive into LLMs 是一本面向实践的大语言模型深入学习教程，系统讲解 LLM 的核心技术细节，包括预训练、微调、对齐等关键技术，配套完整的代码实现和中文解读。",
+        "Python",
+    ),
+    (
+        "https://github.com/vercel-labs/open-agents",
+        "Open Agents 是 Vercel Labs 推出的开源 AI Agent 框架，提供在 Vercel 平台上快速部署和管理 AI Agent 的完整工具链，与 Next.js 生态深度集成。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/lsdefine/GenericAgent",
+        "GenericAgent 是一个通用 AI Agent 框架，提供灵活的工具调用、记忆管理和多步推理能力，支持快速构建面向特定领域的定制化 AI 助手。",
+        "Python",
+    ),
+    (
+        "https://github.com/google/magika",
+        "Magika 是 Google 开源的 AI 驱动文件类型检测工具，使用深度学习模型识别文件的真实类型，精度显著优于传统的基于魔数（magic bytes）的检测方法。支持 200+ 文件类型，已在 Google 内部大规模应用，是文件安全扫描和数据处理管道的实用工具。",
+        "Python",
+    ),
+    (
+        "https://github.com/Donchitos/Claude-Code-Game-Studios",
+        "Claude-Code-Game-Studios 是一个使用 Claude Code 辅助游戏开发的实践项目集，展示如何利用 AI 编程助手加速游戏开发流程，包括游戏逻辑生成、关卡设计辅助等场景。",
+        "Python",
+    ),
+    (
+        "https://github.com/addyosmani/agent-skills",
+        "Chrome 技术倡导者 Addy Osmani 分享的 Claude Code Agent Skills 集合，包含前端开发、Web 性能优化等领域的实用工作流技能，代表了 Web 工程领域的 Claude Code 最佳实践。",
+        "无（配置类）",
+    ),
+    (
+        "https://github.com/steipete/wacli",
+        "wacli 是一款命令行 WhatsApp 客户端，支持在终端中发送和接收 WhatsApp 消息，适合喜欢命令行工作流或需要自动化 WhatsApp 消息处理的开发者使用。",
+        "Swift",
+    ),
+    (
+        "https://github.com/z-lab/dflash",
+        "dflash 是一个高性能数据闪写工具，支持快速的数据传输和存储操作，适用于需要极致速度的数据处理场景。",
+        "Python",
+    ),
+    (
+        "https://github.com/openai/openai-agents-python",
+        "openai-agents-python 是 OpenAI 官方发布的 Python Agent SDK，提供构建 AI Agent 应用的官方标准接口，支持工具调用、多 Agent 编排、状态管理和流式输出。是基于 OpenAI 模型开发 Agent 应用的官方推荐框架。",
+        "Python",
+    ),
+    (
+        "https://github.com/EvoMap/evolver",
+        "Evolver 是一个基于进化算法的 AI 优化框架，通过遗传算法、进化策略等技术自动优化模型参数和系统配置，适用于超参数搜索和自动化机器学习场景。",
+        "Python",
+    ),
+    (
+        "https://github.com/BasedHardware/omi",
+        "Omi 是 Based Hardware 推出的 AI 可穿戴设备和配套开源软件平台，能够实时录制并分析佩戴者的对话内容，生成记忆摘要和行动建议。是个人 AI 记忆增强和量化自我领域的前沿硬件+软件开源项目。",
+        "Python / Dart",
+    ),
+    (
+        "https://github.com/openai/parameter-golf",
+        "Parameter Golf 是 OpenAI 发布的模型参数效率挑战性研究项目，探索如何用最少的参数实现最佳的任务性能，推动高效小模型的研究边界。",
+        "Python",
+    ),
+    (
+        "https://github.com/SimoneAvogadro/android-reverse-engineering-skill",
+        "android-reverse-engineering-skill 是一个专注于 Android 逆向工程的 Claude Code Skill，提供 APK 分析、反编译、混淆还原等 Android 安全研究工作流，帮助安全研究人员高效进行移动端安全分析。",
+        "无（配置类）",
+    ),
+    (
+        "https://github.com/lukilabs/craft-agents-oss",
+        "craft-agents-oss 是 Luki Labs 开源的 AI Agent 构建框架，提供结构化的 Agent 设计模式和组件库，支持快速搭建生产级 AI Agent 服务。",
+        "Python",
+    ),
+    (
+        "https://github.com/Tracer-Cloud/opensre",
+        "OpenSRE 是一个 AI 驱动的站点可靠性工程（SRE）自动化平台，通过 LLM 辅助实现告警分析、故障根因定位和自动化运维响应，是 AIOps 领域的优秀开源项目。",
+        "Python",
+    ),
+    (
+        "https://github.com/pingdotgg/t3code",
+        "t3code 是 Ping.gg（T3 技术栈创始团队）发布的 AI 编程工具，基于 T3 Stack（TypeScript、tRPC、Tailwind CSS、Next.js）的最佳实践，为全栈 TypeScript 开发者提供 AI 辅助编程支持。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/thunderbird/thunderbolt",
+        "Thunderbolt 是 Mozilla Thunderbird 邮件客户端的新一代项目，旨在以现代技术栈重构 Thunderbird，提供更快速、更现代化的桌面邮件客户端体验。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/deepseek-ai/DeepGEMM",
+        "DeepGEMM 是 DeepSeek AI 开源的高性能矩阵乘法（GEMM）内核库，针对深度学习训练和推理中的大规模矩阵运算进行了极致优化。相比 cuBLAS 在特定场景下有显著性能提升，是 DeepSeek 在基础 AI 算子层面开源贡献的代表性项目。",
+        "CUDA / C++",
+    ),
+    (
+        "https://github.com/aaddrick/claude-desktop-debian",
+        "claude-desktop-debian 提供了在 Debian/Ubuntu Linux 系统上安装和运行 Claude Desktop 应用的完整指南和安装脚本，弥补了 Anthropic 官方 Claude Desktop 不提供 Linux 版本的空白。",
+        "Shell",
+    ),
+    (
+        "https://github.com/rustdesk/rustdesk",
+        "RustDesk 是一款基于 Rust 开发的开源远程桌面软件，是 TeamViewer 的优秀开源替代方案。支持自托管中继服务器保障数据隐私，跨平台兼容 Windows、macOS、Linux、Android 和 iOS，提供低延迟、高画质的远程桌面连接体验，GitHub 星标超过 83k。",
+        "Rust",
+    ),
+    (
+        "https://github.com/tractorjuice/arc-kit",
+        "arc-kit 是一个基于 Wardley Mapping 战略框架的 AI 辅助工具包，帮助战略分析师和咨询顾问使用 AI 加速绘制和分析 Wardley Maps，用于技术战略规划和市场竞争分析。",
+        "Python",
+    ),
+    (
+        "https://github.com/multica-ai/andrej-karpathy-skills",
+        "multica-ai/andrej-karpathy-skills 是受 Andrej Karpathy 工程风格启发的 AI 技能集合，专注于深度学习和 LLM 工程实践场景的 Claude Code 工作流技能。",
+        "无（配置类）",
+    ),
+    (
+        "https://github.com/Fincept-Corporation/FinceptTerminal",
+        "FinceptTerminal 是一款终端金融数据分析工具，提供股票行情、财务数据、技术分析等功能的命令行界面，让量化投资者和数据分析师在终端环境中高效进行金融数据探索。",
+        "Python",
+    ),
+    (
+        "https://github.com/paperless-ngx/paperless-ngx",
+        "Paperless-ngx 是一款强大的开源文档管理系统，支持通过 AI OCR 自动识别和归档纸质文件、PDF 等文档，提供全文搜索、标签分类和自动化归档规则。是构建个人或企业无纸化办公环境的最佳开源解决方案。",
+        "Python",
+    ),
+    (
+        "https://github.com/pi-hole/pi-hole",
+        "Pi-hole 是专为 Raspberry Pi（及其他 Linux 设备）设计的网络级广告屏蔽工具，通过 DNS 黑洞技术拦截整个局域网的广告和追踪请求。无需在每台设备安装插件，可保护家中所有设备（包括智能电视、手机等），是家庭网络隐私保护的经典开源项目。",
+        "Shell / Python",
+    ),
+    (
+        "https://github.com/XTLS/Xray-core",
+        "Xray-core 是 V2Ray 的增强分支，是目前最主流的代理协议核心框架，支持 VLESS、VMess、Trojan、XTLS 等多种传输协议，性能更优、功能更丰富。广泛用于网络代理服务器搭建，是科学上网工具生态的核心基础设施。",
+        "Go",
+    ),
+    (
+        "https://github.com/warproxxx/poly_data",
+        "poly_data 是一个 Polymarket 预测市场数据收集和分析工具，帮助研究者和交易者获取、整理和分析 Polymarket 上的历史交易数据和市场信息，适合预测市场策略研究。",
+        "Python",
+    ),
+    (
+        "https://github.com/zilliztech/claude-context",
+        "claude-context 是 Zilliz（Milvus 母公司）推出的 Claude Code Context 管理工具，帮助开发者在 Claude Code 使用过程中高效管理向量数据库相关的上下文信息，提升 AI 辅助开发中的上下文利用效率。",
+        "Python",
+    ),
+    (
+        "https://github.com/microsoft/ai-agents-for-beginners",
+        "AI Agents for Beginners 是微软官方推出的 AI Agent 入门课程，通过 18 个精心设计的课时系统讲解 AI Agent 的核心概念、设计模式和实践方法。配套完整的代码示例和多语言翻译，是最受推荐的 AI Agent 学习入门教程之一。",
+        "Python",
+    ),
+    (
+        "https://github.com/dayanch96/YTLite",
+        "YTLite 是一款 iOS YouTube 客户端的增强插件（需越狱或侧载），提供广告屏蔽、后台播放、画中画、下载视频等 YouTube 官方不支持的功能，是 iOS 上最受欢迎的 YouTube 增强工具之一。",
+        "Objective-C",
+    ),
+    (
+        "https://github.com/HKUDS/RAG-Anything",
+        "RAG-Anything 是香港大学数据科学团队推出的多模态 RAG 框架，支持对文本、图像、表格、代码等任意模态内容进行统一的检索增强生成处理，是最全面的多模态 RAG 开源实现之一。",
+        "Python",
+    ),
+    (
+        "https://github.com/VoltAgent/awesome-agent-skills",
+        "Awesome Agent Skills 是 VoltAgent 整理的 AI Agent Skills 精选集合，覆盖多种应用场景和工具集成，帮助开发者快速找到合适的 Agent 技能模板。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/langfuse/langfuse",
+        "Langfuse 是一款开源的 LLM 应用可观测性和评估平台，提供完整的 Trace 追踪、成本分析、提示词管理和数据集评估功能。支持本地部署，与 LangChain、LlamaIndex 等主流框架无缝集成，是 LLM 应用监控和持续优化的核心工具。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/open-metadata/OpenMetadata",
+        "OpenMetadata 是一款开源的统一数据资产管理和数据目录平台，提供数据发现、数据血缘、数据质量监控和协作功能。支持连接 100+ 数据源，帮助企业建立统一的数据资产视图，是数据治理和数据网格架构的重要基础设施。",
+        "Java / TypeScript",
+    ),
+    (
+        "https://github.com/AIDC-AI/Pixelle-Video",
+        "Pixelle-Video 是 AIDC-AI 发布的 AI 视频生成模型，支持高质量文本到视频和图像到视频的生成，在视频生成领域提供开源可复现的研究基础。",
+        "Python",
+    ),
+    (
+        "https://github.com/Z4nzu/hackingtool",
+        "HackingTool 是一款整合了数十种渗透测试和安全研究工具的 All-in-One 工具箱，通过简洁的命令行菜单快速调用各类安全工具。适合安全研究人员和渗透测试工程师用于合法的安全测试工作。",
+        "Python",
+    ),
+    (
+        "https://github.com/vercel-labs/skills",
+        "Vercel Labs Skills 是 Vercel 官方实验室发布的 Claude Code Skills 集合，面向 Next.js 和 Vercel 平台的开发场景，提供部署、优化等相关工作流技能。",
+        "无（配置类）",
+    ),
+    (
+        "https://github.com/huggingface/ml-intern",
+        "ml-intern 是 Hugging Face 发布的面向 ML 实习生的入门项目和训练材料，涵盖机器学习工程基础和 Hugging Face 工具链的使用，适合初入 ML 工程领域的开发者学习。",
+        "Python",
+    ),
+    (
+        "https://github.com/Anil-matcha/Open-Generative-AI",
+        "Open Generative AI 是一个收录和展示开源生成式 AI 项目的导航仓库，覆盖文本生成、图像生成、视频生成等各类开源 AIGC 工具和模型资源，帮助开发者快速找到合适的开源生成 AI 工具。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/Alishahryar1/free-claude-code",
+        "free-claude-code 提供了在有限预算下使用 Claude Code 的技巧和替代方案，汇总了可用于驱动 Claude Code 的免费或低成本 API 资源和配置方法。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/mksglu/context-mode",
+        "context-mode 是一个 AI 上下文管理工具，帮助开发者在使用 LLM 进行开发时更高效地组织和切换不同的上下文模式，优化 AI 辅助编程的工作效率。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/coreyhaines31/marketingskills",
+        "marketingskills 是一个面向营销专业人员的 Claude Code Skills 集合，提供市场调研、文案生成、营销策略分析等营销工作流自动化技能。",
+        "无（配置类）",
+    ),
+    (
+        "https://github.com/chiphuyen/aie-book",
+        "aie-book 是 Chip Huyen（《Designing Machine Learning Systems》作者）的《AI Engineering》书籍配套开源资源仓库，提供书中所有代码示例和练习，是 AI 工程领域最权威的学习参考资料之一。",
+        "Python",
+    ),
+    (
+        "https://github.com/hugohe3/ppt-master",
+        "PPT Master 是一款 AI 驱动的 PPT 自动生成工具，通过输入主题和内容要点即可自动生成精美的演示文稿，支持多种风格模板和自定义布局，大幅降低 PPT 制作成本。",
+        "Python",
+    ),
+    (
+        "https://github.com/rtk-ai/rtk",
+        "RTK 是一个实时 AI 推理工具包，专注于在延迟敏感场景下实现高效的 LLM 推理和 AI 决策，适用于需要毫秒级响应的 AI 应用场景。",
+        "Python",
+    ),
+    (
+        "https://github.com/RooCodeInc/Roo-Code",
+        "Roo Code（前 Roo-Cline）是一款强大的开源 AI 编码助手 VS Code 插件，基于 Claude 等顶级 LLM 提供代码生成、重构、调试和项目级理解能力。支持 MCP 工具扩展和自定义模式，是当前最受欢迎的开源 AI 编程助手之一。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/CJackHwang/ds2api",
+        "ds2api 是一个将 DeepSeek 模型接口转换为标准 OpenAI API 格式的代理工具，让使用 OpenAI SDK 的应用无需修改代码即可切换到 DeepSeek 模型，降低模型迁移成本。",
+        "Python",
+    ),
+    (
+        "https://github.com/ComposioHQ/awesome-codex-skills",
+        "Awesome Codex Skills 是 ComposioHQ 整理的 OpenAI Codex/Codex CLI Skills 精选合集，收录了面向各种开发场景的高质量代码技能模板，适合 OpenAI 开发工具的重度用户参考。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/trycua/cua",
+        "CUA（Computer Use Agent）是一个让 AI Agent 能够像人一样操作计算机 GUI 的框架，通过屏幕截图、鼠标控制和键盘输入实现全自动化的计算机操控，适用于 RPA 自动化和 AI 辅助办公场景。",
+        "Python",
+    ),
+    (
+        "https://github.com/donnemartin/system-design-primer",
+        "System Design Primer 是 GitHub 上最受欢迎的系统设计学习资源，以图文结合的方式系统讲解大型分布式系统的设计原则和经典架构。内容涵盖 CAP 定理、数据库分片、缓存、消息队列、微服务等核心主题，GitHub 星标超过 290k，是系统设计面试备考的必读材料。",
+        "Python",
+    ),
+    (
+        "https://github.com/GyulyVGC/sniffnet",
+        "Sniffnet 是一款现代化的开源网络流量监控工具，提供直观的图形界面实时展示网络连接、流量统计和协议分析。基于 Rust 开发，性能高效，支持 Windows、macOS 和 Linux，是替代 Wireshark 进行日常网络监控的轻量级选择。",
+        "Rust",
+    ),
+    (
+        "https://github.com/EbookFoundation/free-programming-books",
+        "Free Programming Books 是 GitHub 星标最多的项目之一（超过 350k 星），收录了各编程语言和技术方向的免费电子书、课程、播客等学习资源。支持多种语言版本，是全球程序员自学编程的权威免费资源导航。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/iamgio/quarkdown",
+        "Quarkdown 是一种扩展 Markdown 语法的新型标记语言，在标准 Markdown 基础上增加了变量、函数、条件逻辑等编程特性，支持输出为 HTML、PDF 等格式，适合编写技术文档和演示文稿。",
+        "Kotlin",
+    ),
+    (
+        "https://github.com/warpdotdev/warp",
+        "Warp 是一款革命性的现代化终端工具，内置 AI 命令助手、智能补全、块状输入区域和团队协作功能，将传统终端的使用体验提升到全新高度。支持 macOS 和 Linux，是最受开发者喜爱的新一代终端工具之一。",
+        "Rust",
+    ),
+    (
+        "https://github.com/1jehuang/jcode",
+        "jcode 是一个轻量级的 AI 辅助编程工具，专注于提供简洁高效的代码生成和补全功能，适合喜欢极简工具的开发者日常使用。",
+        "Python",
+    ),
+    (
+        "https://github.com/ZhuLinsen/daily_stock_analysis",
+        "daily_stock_analysis 是一个每日自动运行的 A 股行情分析工具，通过数据抓取和技术指标计算，生成每日股票市场的量化分析报告，帮助个人投资者快速掌握市场动态。",
+        "Python",
+    ),
+    (
+        "https://github.com/soxoj/maigret",
+        "Maigret 是一款强大的 OSINT 用户名情报收集工具，能在 3000+ 个网站上同时搜索目标用户名，并生成详细的 HTML/PDF 调查报告，支持关联账号发现。是比 Sherlock 更全面的开源身份信息溯源工具。",
+        "Python",
+    ),
+    (
+        "https://github.com/iv-org/invidious",
+        "Invidious 是 YouTube 的开源隐私友好前端，通过自托管部署提供无广告、无追踪的 YouTube 视频观看体验。支持订阅频道、播放列表、字幕等完整功能，无需 Google 账号即可使用，是注重隐私的用户访问 YouTube 内容的首选方案。",
+        "Crystal",
+    ),
+    (
+        "https://github.com/gorhill/uBlock",
+        "uBlock Origin 是一款高效的开源广告和内容屏蔽浏览器扩展，以极低的内存和 CPU 占用实现强大的过滤能力。支持自定义过滤规则，可屏蔽广告、追踪器、弹窗和恶意网站，是 Chrome 和 Firefox 上最受信任的广告屏蔽工具。",
+        "JavaScript",
+    ),
+    (
+        "https://github.com/ghostty-org/ghostty",
+        "Ghostty 是 HashiCorp 创始人 Mitchell Hashimoto 开发的高性能开源终端模拟器，以 Zig 语言构建，追求极致的渲染性能和原生平台体验。支持 macOS 和 Linux，提供 GPU 加速渲染、多标签页、自定义主题等完整功能，是新一代高性能终端的代表作。",
+        "Zig",
+    ),
+    (
+        "https://github.com/ForrestKnight/open-source-cs",
+        "Open Source CS 是一套精选的免费在线资源构成的计算机科学自学课程体系，等价于顶尖大学 CS 本科教育质量。覆盖数据结构、算法、操作系统、计算机网络等核心课程，每门课程均对应免费优质学习资源，适合自学编程的求职者参考。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/browserbase/skills",
+        "Browserbase Skills 是 Browserbase 发布的 Claude Code Skills 集合，提供浏览器自动化、网页抓取等相关工作流技能，与 Browserbase 云浏览器服务深度集成。",
+        "无（配置类）",
+    ),
+    (
+        "https://github.com/ShareX/ShareX",
+        "ShareX 是 Windows 平台最强大的开源截图和屏幕录制工具，支持多种截图模式、自动上传到各大图床、OCR 文字识别、GIF 录制和丰富的图片标注功能。完全免费无广告，是 Windows 用户截图工具的首选，GitHub 星标超过 30k。",
+        "C#",
+    ),
+    (
+        "https://github.com/Hmbown/DeepSeek-TUI",
+        "DeepSeek-TUI 是一款在终端中使用 DeepSeek 大模型的 TUI（文本用户界面）客户端，提供类似 ChatGPT 的对话体验，适合喜欢命令行工作环境的开发者直接在终端使用 DeepSeek 模型。",
+        "Python",
+    ),
+    (
+        "https://github.com/openwrt/openwrt",
+        "OpenWrt 是专为嵌入式设备（主要是路由器）设计的开源 Linux 发行版，提供完全可定制的网络操作系统。支持数千种路由器硬件，可安装各类网络工具和应用，是高级用户打造全功能智能路由器的首选固件。",
+        "C / Shell",
+    ),
+    (
+        "https://github.com/Arindam200/awesome-ai-apps",
+        "Awesome AI Apps 是一个收录各类 AI 应用开源项目的精选列表，涵盖 AI 聊天机器人、代码助手、图像生成、语音助手等多个 AI 应用方向，是开发者寻找 AI 应用灵感和参考实现的优质资源库。",
+        "无（文档类）",
+    ),
+    (
+        "https://github.com/LearningCircuit/local-deep-research",
+        "Local Deep Research 是一款本地运行的 AI 深度研究工具，通过自动化搜索、阅读和综合多个信息源，生成类似 Perplexity Deep Research 功能的详细研究报告，无需订阅付费服务即可实现 AI 辅助深度研究。",
+        "Python",
+    ),
+    (
+        "https://github.com/PriorLabs/TabPFN",
+        "TabPFN 是一个用于表格数据分类和回归的先验拟合网络模型，通过在合成数据集上进行元学习，实现对小型表格数据集的快速零样本预测，性能媲美甚至超越传统集成方法如 XGBoost，是表格机器学习领域的前沿创新。",
+        "Python",
+    ),
+    (
+        "https://github.com/zed-industries/zed",
+        "Zed 是由 Atom 编辑器和 Tree-sitter 原创团队打造的下一代高性能代码编辑器，使用 Rust 和 GPUI 构建。内置 AI 助手、实时协作、多语言 LSP 支持，以极致的启动速度和响应性著称，是 VS Code 最强劲的开源替代方案之一。",
+        "Rust",
+    ),
+    (
+        "https://github.com/anthropics/financial-services",
+        "anthropics/financial-services 是 Anthropic 官方发布的金融服务行业 Claude AI 应用示例和最佳实践集合，展示如何在金融合规框架下安全、有效地部署 Claude 模型，适合金融机构 AI 转型参考。",
+        "Python",
+    ),
+    (
+        "https://github.com/BigBodyCobain/Shadowbroker",
+        "Shadowbroker 是一个网络安全工具集，用于安全研究和渗透测试场景下的网络分析任务。请确保在合法授权范围内使用。",
+        "Python",
+    ),
+    (
+        "https://github.com/decolua/9router",
+        "9router 是一个轻量级路由管理工具，支持灵活的请求路由配置和流量分发策略，适合构建微服务架构或 API 网关场景。",
+        "Lua",
+    ),
+    (
+        "https://github.com/Augani/openreel-video",
+        "openreel-video 是一个开源的视频生成和编辑框架，集成多种 AI 视频模型，支持程序化视频内容创作和自动化视频处理流水线。",
+        "Python",
+    ),
+    (
+        "https://github.com/openai/symphony",
+        "Symphony 是 OpenAI 发布的 AI 工作流编排框架，支持将多个 AI 模型和工具组合成复杂的自动化工作流，是 OpenAI 在 Agent 编排领域的官方开源贡献。",
+        "Python",
+    ),
+    (
+        "https://github.com/CloakHQ/CloakBrowser",
+        "CloakBrowser 是一款注重隐私保护的开源浏览器，内置广告屏蔽、指纹混淆和流量加密功能，旨在保护用户在线浏览隐私，防止被第三方追踪和数据收集。",
+        "C++",
+    ),
+    (
+        "https://github.com/awslabs/aidlc-workflows",
+        "aidlc-workflows 是 AWS Labs 发布的 AI 驱动的数据生命周期管理工作流集合，提供在 AWS 云平台上自动化数据摄入、转换和治理的参考架构和代码实现。",
+        "Python",
+    ),
+    (
+        "https://github.com/HKUDS/AI-Trader",
+        "AI-Trader 是香港大学数据科学团队推出的 AI 自主交易 Agent 框架，通过多智能体协作实现市场分析、策略制定和交易执行的全流程自动化，是 AI 量化交易研究的前沿开源项目。",
+        "Python",
+    ),
+    (
+        "https://github.com/flutter/skills",
+        "flutter/skills 是 Flutter 官方团队发布的 Claude Code Skills 集合，提供针对 Flutter 应用开发场景优化的工作流技能，覆盖 Widget 开发、状态管理、平台集成等 Flutter 核心开发任务。",
+        "无（配置类）",
+    ),
+    (
+        "https://github.com/rohitg00/agentmemory",
+        "AgentMemory 是一个专为 AI Agent 设计的记忆管理库，提供短期、长期和情节记忆的统一存储和检索接口，解决 LLM 上下文窗口限制导致的记忆管理难题。",
+        "Python",
+    ),
+    (
+        "https://github.com/datawhalechina/easy-vibe",
+        "easy-vibe 是 Datawhale 社区推出的 Vibe Coding（氛围编程）入门教程，通过简洁的实践案例帮助初学者掌握 AI 辅助编程的核心理念和工作方法，降低 AI 辅助开发的入门门槛。",
+        "Python",
+    ),
+    (
+        "https://github.com/masterking32/MasterDnsVPN",
+        "MasterDnsVPN 是一个基于 DNS 的 VPN 和网络流量管理工具，通过智能 DNS 解析实现网络分流和访问控制，适合需要灵活管理网络访问策略的用户。",
+        "Python",
+    ),
+    (
+        "https://github.com/playcanvas/supersplat",
+        "SuperSplat 是 PlayCanvas 推出的 3D Gaussian Splatting 编辑器，支持在浏览器中直接查看、编辑和优化 3DGS 格式的三维场景，是目前最完善的开源 Gaussian Splatting 工具之一。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/oracle-devrel/oracle-ai-developer-hub",
+        "Oracle AI Developer Hub 是 Oracle 官方发布的 AI 开发资源中心，提供在 Oracle 云平台上构建 AI 应用的完整示例代码、教程和最佳实践，覆盖 LLM 接入、RAG 构建和 AI Agent 开发等场景。",
+        "Python",
+    ),
+    (
+        "https://github.com/jundot/omlx",
+        "omlx 是一个机器学习实验管理和追踪工具，支持模型训练过程中的超参数记录、指标可视化和实验对比，帮助 ML 工程师高效管理和复现实验结果。",
+        "Python",
+    ),
+    (
+        "https://github.com/withastro/flue",
+        "Flue 是 Astro 框架团队推出的前端状态管理库，为 Astro 应用提供简洁、响应式的状态管理方案，与 Astro 的岛屿架构完美兼容，降低跨组件状态共享的复杂度。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/THU-MAIC/OpenMAIC",
+        "OpenMAIC 是清华大学 MAIC 团队发布的开源多智能体交互与协作框架，支持构建具备复杂社会交互能力的 AI Agent 系统，是多 Agent 协作和涌现行为研究的开放研究平台。",
+        "Python",
+    ),
+    (
+        "https://github.com/yikart/AiToEarn",
+        "AiToEarn 是一个 AI 驱动的内容变现工具集，帮助创作者利用 AI 自动生成各类平台内容（短视频、图文、小说等）并实现流量变现，覆盖抖音、小红书、微信公众号等主流平台。",
+        "Python",
+    ),
+    (
+        "https://github.com/tinyhumansai/openhuman",
+        "OpenHuman 是 Tiny Humans AI 推出的开源数字人生成框架，支持创建可交互的 AI 数字人形象，集成语音合成、唇形同步和表情驱动技术，适合虚拟主播和数字人应用开发。",
+        "Python",
+    ),
+    (
+        "https://github.com/millionco/react-doctor",
+        "React Doctor 是一个 AI 辅助的 React 代码健康诊断工具，自动分析 React 组件中的性能问题、反模式和潜在 Bug，并提供针对性的优化建议，帮助团队持续维护代码质量。",
+        "TypeScript",
+    ),
+    (
+        "https://github.com/rasbt/LLMs-from-scratch",
+        "LLMs from Scratch 是 Sebastian Raschka（《Machine Learning with PyTorch and Scikit-Learn》作者）的 《Build a Large Language Model (From Scratch)》一书配套代码，带领读者从零实现一个完整的 GPT 风格大语言模型。是目前最受欢迎的 LLM 从零实现教程，GitHub 星标超过 45k，适合深度学习从业者深入理解 LLM 原理。",
+        "Python",
+    ),
+]
+
+with open(OUTPUT_FILE, "w", newline="", encoding="utf-8-sig") as f:
+    writer = csv.DictWriter(f, fieldnames=["项目地址", "项目说明", "语言"])
+    writer.writeheader()
+    for url, desc, lang in repos:
+        writer.writerow({"项目地址": url, "项目说明": desc, "语言": lang})
+
+print(f"Done! Written {len(repos)} rows to {OUTPUT_FILE}")
